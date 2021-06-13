@@ -21,7 +21,7 @@ INSTALLED_APPS = [
     # Other apps
 
     # My apps
-
+    'store.apps.StoreConfig',
 ]
 
 MIDDLEWARE = [
