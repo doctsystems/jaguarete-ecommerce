@@ -1,0 +1,73 @@
+{% extends 'bases/base.html' %}
+{% load static %}
+{% block title %}Jaguarete Kaa - Ecommerce{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-sm">
+		<div class="card card-home">
+			<div class="card-body">
+				<div class="row">
+					<div class="col-sm">
+						<div class="card">
+							<img class="card-img-top" src="https://dummyimage.com/600x400/cfcfcf/ffffff.png" alt="Card image cap">
+							<div class="card-body">
+								<h4 class="card-title"><a href="product.html" title="View Product">Lorem ipsum</a></h4>
+								<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+									sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+								<div class="row">
+									<div class="col">
+										<p class="btn btn-danger btn-block">99.00 $</p>
+									</div>
+									<div class="col">
+										<a href="cart.html" class="btn btn-success btn-block">Add to cart</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm">
+						<div class="card">
+							<img class="card-img-top" src="https://dummyimage.com/600x400/55595c/ffffff.png" alt="Card image cap">
+							<div class="card-body">
+								<h4 class="card-title"><a href="product.html" title="View Product">Lorem ipsum</a></h4>
+								<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+									sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+								<div class="row">
+									<div class="col">
+										<p class="btn btn-danger btn-block">99.00 $</p>
+									</div>
+									<div class="col">
+										<a href="cart.html" class="btn btn-success btn-block">Add to cart</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm">
+						<div class="card">
+							<img class="card-img-top" src="https://dummyimage.com/600x400/cfcfcf/fff" alt="Card image cap">
+							<div class="card-body">
+								<h4 class="card-title"><a href="product.html" title="View Product">Lorem ipsum</a></h4>
+								<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+									sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+								<div class="row">
+									<div class="col">
+										<p class="btn btn-danger btn-block">99.00 $</p>
+									</div>
+									<div class="col">
+										<a href="cart.html" class="btn btn-success btn-block">Add to cart</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Last products block -->
+{% include 'includes/last.html' %}
+
+{% endblock %}
