@@ -10,6 +10,8 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=[], cast=Csv())
 
+AUTH_USER_MODEL = "users.User"
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -21,6 +23,7 @@ INSTALLED_APPS = [
     # Other apps
 
     # My apps
+    'users.apps.UsersConfig',
     'store.apps.StoreConfig',
 ]
 
