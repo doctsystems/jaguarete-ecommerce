@@ -36,7 +36,7 @@ class Producto(TimeStampedModel):
   is_disponible = models.BooleanField(default=True)
 
   class Meta:
-    ordering = ("nombre", )
+    ordering = ("-id", )
 
   def __str__(self):
     return self.nombre
