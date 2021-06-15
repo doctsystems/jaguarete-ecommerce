@@ -3,71 +3,34 @@
 {% block title %}Jaguarete Kaa - Ecommerce{% endblock %}
 {% block content %}
 <div class="row">
-	<div class="col-sm">
-		<div class="card card-home">
-			<div class="card-body">
-				<div class="row">
-					<div class="col-sm">
-						<div class="card">
-							<img class="card-img-top" src="https://dummyimage.com/600x400/cfcfcf/ffffff.png" alt="Card image cap">
-							<div class="card-body">
-								<h4 class="card-title"><a href="product.html" title="View Product">Lorem ipsum</a></h4>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-									sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-								<div class="row">
-									<div class="col">
-										<p class="btn btn-danger btn-block">99.00 $</p>
-									</div>
-									<div class="col">
-										<a href="cart.html" class="btn btn-success btn-block">Add to cart</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm">
-						<div class="card">
-							<img class="card-img-top" src="https://dummyimage.com/600x400/55595c/ffffff.png" alt="Card image cap">
-							<div class="card-body">
-								<h4 class="card-title"><a href="product.html" title="View Product">Lorem ipsum</a></h4>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-									sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-								<div class="row">
-									<div class="col">
-										<p class="btn btn-danger btn-block">99.00 $</p>
-									</div>
-									<div class="col">
-										<a href="cart.html" class="btn btn-success btn-block">Add to cart</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm">
-						<div class="card">
-							<img class="card-img-top" src="https://dummyimage.com/600x400/cfcfcf/fff" alt="Card image cap">
-							<div class="card-body">
-								<h4 class="card-title"><a href="product.html" title="View Product">Lorem ipsum</a></h4>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-									sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-								<div class="row">
-									<div class="col">
-										<p class="btn btn-danger btn-block">99.00 $</p>
-									</div>
-									<div class="col">
-										<a href="cart.html" class="btn btn-success btn-block">Add to cart</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+  <div class="col-sm">
+    <div class="card card-home">
+      <div class="card-body">
+        <div class="row">
+          {% for p in productos|slice:":3" %}
+          <div class="col-sm">
+            <div class="card">
+              <img class="card-img-top" src="{{p.imagen.url}}" alt="{{p.nombre}}">
+              <div class="card-body">
+                <h4 class="card-title"><a href="#" title="Ver Producto">{{p.nombre}}</a></h4>
+                <p class="card-text">{{p.descripcion|safe|truncatechars:"100"}}</p>
+                <div class="row">
+                  <div class="col">
+                    <p class="btn btn-danger btn-block">{{p.precio}} $us.</p>
+                  </div>
+                  <div class="col">
+                    <a href="#" class="btn btn-success btn-block">Add carrito</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
 <!-- Last products block -->
 {% include 'includes/last.html' %}
-
 {% endblock %}

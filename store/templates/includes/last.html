@@ -1,4 +1,4 @@
-<div class="container mt-3">
+<div class="container mt-3 mb-5">
 	<div class="row">
 		<div class="col-sm">
 			<div class="card">
@@ -10,104 +10,24 @@
 						<div class="table-responsive">
 							<table class="table table-hover">
 								<tbody>
+									{% for p in productos|slice:"3:" %}
 									<tr>
 										<td width="65">
-											<img src="https://dummyimage.com/600x400/cfcfcf/ffffff.png" class="img-xs border">
+											<img src="{{p.imagen.url}}" class="img-xs border">
 										</td>
 										<td>
-											<p class="title mb-0">Product name</p>
-											<var class="price text-muted">145.00 $</var>
+											<p class="title mb-0"><b>{{p.nombre}}</b></p>
+											<var class="price text-muted">{{p.precio}} $us.</var>
 										</td>
-										<td> Vendedor <br> Nike clothing </td>
-										<td width="250"> 
-											<a href="#" class="btn btn-outline-primary">Ver producto</a>
-											<a href="#" class="btn btn-outline-success">Add carrito</a>
+										<td><b>{{p.categoria}}</b><br>{{p.descripcion|safe|truncatechars:"50"}} </td>
+										<td width="100"> 
+											<a href="#" class="btn btn-info" width="50">Ver detalle</a>
+										</td>
+										<td width="100">
+											<a href="#" class="btn btn-success" width="50">Add carrito</a>
 										</td>
 									</tr>
-									<tr>
-										<td>
-											<img src="https://dummyimage.com/600x400/cfcfcf/ffffff.png" class="img-xs border">
-										</td>
-										<td>
-											<p class="title mb-0">Product name</p>
-											<var class="price text-muted">15.00 $</var>
-										</td>
-										<td> Vendedor <br> ABC shop </td>
-										<td> 
-											<a href="#" class="btn btn-outline-primary">Ver producto</a>
-											<a href="#" class="btn btn-outline-success">Add carrito</a>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<img src="https://dummyimage.com/600x400/cfcfcf/ffffff.png" class="img-xs border">
-										</td>
-										<td>
-											<p class="title mb-0">Product name</p>
-											<var class="price text-muted">15.00 $</var>
-										</td>
-										<td> Vendedor <br> ABC shop </td>
-										<td> 
-											<a href="#" class="btn btn-outline-primary">Ver producto</a>
-											<a href="#" class="btn btn-outline-success">Add carrito</a>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<img src="https://dummyimage.com/600x400/cfcfcf/ffffff.png" class="img-xs border">
-										</td>
-										<td>
-											<p class="title mb-0">Product name</p>
-											<var class="price text-muted">15.00 $</var>
-										</td>
-										<td> Vendedor <br> ABC shop </td>
-										<td> 
-											<a href="#" class="btn btn-outline-primary">Ver producto</a>
-											<a href="#" class="btn btn-outline-success">Add carrito</a>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<img src="https://dummyimage.com/600x400/cfcfcf/ffffff.png" class="img-xs border">
-										</td>
-										<td>
-											<p class="title mb-0">Product name</p>
-											<var class="price text-muted">15.00 $</var>
-										</td>
-										<td> Vendedor <br> ABC shop </td>
-										<td> 
-											<a href="#" class="btn btn-outline-primary">Ver producto</a>
-											<a href="#" class="btn btn-outline-success">Add carrito</a>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<img src="https://dummyimage.com/600x400/cfcfcf/ffffff.png" class="img-xs border">
-										</td>
-										<td>
-											<p class="title mb-0">Product name</p>
-											<var class="price text-muted">15.00 $</var>
-										</td>
-										<td> Vendedor <br> ABC shop </td>
-										<td> 
-											<a href="#" class="btn btn-outline-primary">Ver producto</a>
-											<a href="#" class="btn btn-outline-success">Add carrito</a>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<img src="https://dummyimage.com/600x400/cfcfcf/ffffff.png" class="img-xs border">
-										</td>
-										<td>
-											<p class="title mb-0">Product name</p>
-											<var class="price text-muted">15.00 $</var>
-										</td>
-										<td> Vendedor <br> ABC shop </td>
-										<td> 
-											<a href="#" class="btn btn-outline-primary">Ver producto</a>
-											<a href="#" class="btn btn-outline-success">Add carrito</a>
-										</td>
-									</tr>
+									{% endfor %}
 								</tbody>
 							</table>
 						</div>

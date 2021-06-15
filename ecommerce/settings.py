@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     # My apps
     'users.apps.UsersConfig',
     'store.apps.StoreConfig',
+    'producto.apps.ProductoConfig',
 ]
 
 MIDDLEWARE = [
