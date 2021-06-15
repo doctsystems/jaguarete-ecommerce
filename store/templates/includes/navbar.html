@@ -2,8 +2,7 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
   <div class="container">
     <a class="navbar-brand" href="/">Jaguarete Kaa</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-     aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
@@ -12,7 +11,18 @@
           <a class="nav-link active" href="{% url 'store:home'%}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'store:categorias'%}">Categorias</a>
+          <a class="nav-link" href="{% url 'producto:lista'%}">Productos</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Categorias
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            {% for cat in categorias %}
+            <a class="dropdown-item" href="{{ cat.get_absolute_url }}">{{cat}}</a>
+            <!-- <div class="dropdown-divider"></div> -->
+            {% endfor %}
+          </div>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'store:about'%}">Acerca de</a>

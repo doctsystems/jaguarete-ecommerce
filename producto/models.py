@@ -21,7 +21,7 @@ class Categoria(TimeStampedModel):
     super(Categoria, self).save()
 
   def get_absolute_url(self):
-    return reverse("productos:lista_por_categoria", kwargs={"slug": self.slug})
+    return reverse("producto:lista_por_categoria", kwargs={"slug": self.slug})
 
 
 class Producto(TimeStampedModel):
@@ -46,4 +46,4 @@ class Producto(TimeStampedModel):
     super(Producto, self).save()
 
   def get_absolute_url(self):
-    return reverse("productos:detalle_producto", kwargs={"slug": self.slug})
+    return reverse("producto:detalle", kwargs={"slug": self.slug})
