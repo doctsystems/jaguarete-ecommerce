@@ -1,0 +1,90 @@
+{% extends 'bases/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}Jaguarete Kaa - Carrito{% endblock %}
+{% block section %}
+<section class="jumbotron text-center">
+  <div class="container">
+    <h1 class="jumbotron-heading">Carrito de compras</h1>
+    <p class="lead text-muted mb-0">Le Lorem Ipsum est simplement du faux texte employé
+      dans la composition et la mise en page avant impression.</p>
+  </div>
+</section>
+{% endblock %}
+{% block content %}
+<div class="container mb-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="table-responsive">
+        {% if cart %}
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col"> </th>
+              <th scope="col">Produto</th>
+              <th scope="col" class="text-center">Cantidad</th>
+              <th scope="col" class="text-right">Precio Unitario</th>
+              <th scope="col" class="text-right">Precio Total</th>
+              <th> </th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in cart %}
+            {% with producto=item.producto %}
+            <tr>
+              <td><img src="{{producto.imagen.url}}" width="100" height="100" /> </td>
+              <td>{{producto.nombre}}</td>
+              <td>
+                <form action="{% url 'cart:add' producto.id %}" method="post">
+                  {% csrf_token %}
+                  <div class="form-row">
+                    <div class="col">
+                      {% render_field item.update_cantidad_form.cantidad class+="form-control" %}
+                    </div>
+                    <div class="col">
+                      <input class="btn btn-info" type="submit" value="Actualizar">
+                    </div>
+                  </div>
+                  {{ item.update_cantidad_form.override }}
+                </form>
+              </td>
+              <td class="text-right">{{item.precio}} $us.</td>
+              <td class="text-right">{{item.precio_total}} $us.</td>
+              <td class="text-right">
+                <!-- <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>  -->
+                <form action="{% url 'cart:eliminar' producto.id %}" method="post">
+                  {% csrf_token %}
+                  <input class="btn btn-danger" type="submit" value="Eliminar">
+                </form>
+              </td>
+            </tr>
+            {% endwith %}
+            {% endfor %}
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><strong>Total</strong></td>
+              <td class="text-right"><strong>{{cart.get_precio_total}}</strong></td>
+            </tr>
+          </tbody>
+        </table>
+        {% else %}
+        <p>Su carrito de compras esta vacio!</p>
+        {% endif %}
+      </div>
+    </div>
+    <div class="col mb-2">
+      <div class="row">
+        <div class="col-sm-3  col-md-3">
+          <button class="btn btn-block btn-primary">Continuar comprando</button>
+        </div>
+        <div class="col-sm-3 col-md-3 text-right">
+          <button class="btn btn-block btn-success text-uppercase">Finalizar compra</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

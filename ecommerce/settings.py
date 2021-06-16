@@ -21,11 +21,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Other apps
+    "widget_tweaks",
 
     # My apps
     'users.apps.UsersConfig',
     'store.apps.StoreConfig',
     'producto.apps.ProductoConfig',
+    'cart.apps.CartConfig',
 ]
 
 MIDDLEWARE = [
@@ -101,3 +103,8 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Cart
+CART_SESSION_ID = "cart"
+CART_ITEM_MAX_CANTIDAD = 10
+

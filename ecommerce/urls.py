@@ -9,6 +9,7 @@ urlpatterns = [
   path('admin/', admin.site.urls),
   path('', include(('store.urls', 'store'), namespace='store')),
   path("productos/", include(('producto.urls', 'producto'), namespace='producto')),
+  path("cart/", include(('cart.urls', 'cart'), namespace='cart')),
 ]
 
 # static and media Urls

@@ -1,7 +1,7 @@
 {% extends 'bases/base.html' %}
 {% load static %}
+{% load widget_tweaks %}
 {% block title %}Jaguarete Kaa - Producto - {{producto}}{% endblock %}
-
 {% block content %}
 <div class="container">
   <div class="row">
@@ -33,16 +33,17 @@
       <div class="card bg-light mb-3">
         <div class="card-body">
           <p class="price">{{producto.precio}} $us.</p>
-          <form method="get" action="cart.html">
+          <form method="post" action="{% url 'cart:add' producto.id %}">
+            {% csrf_token %}
             <div class="form-group">
-              <label>Cantidad:</label>
+              {{ form.cantidad.label_tag }}
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus" data-field="">
                     <i class="fa fa-minus"></i>
                   </button>
                 </div>
-                <input type="text" class="form-control text-center" id="quantity" name="quantity" min="1" max="10" value="1">
+                {% render_field form.cantidad class+="form-control ml-sm-3" %}{{ form.override }}
                 <div class="input-group-append">
                   <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="">
                     <i class="fa fa-plus"></i>
@@ -50,9 +51,10 @@
                 </div>
               </div>
             </div>
-            <a href="#" class="btn btn-success btn-lg btn-block text-uppercase">
+            <!-- <a href="#" class="btn btn-success btn-lg btn-block text-uppercase">
               <i class="fa fa-shopping-cart"></i> Add carrito
-            </a>
+            </a> -->
+            <input class="btn btn-success" type="submit" value="Add carrito">
           </form>
           <div class="product_rassurance">
             <ul class="list-inline">
