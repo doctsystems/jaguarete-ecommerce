@@ -1,15 +1,7 @@
 {% extends 'bases/base.html' %}
 {% load static %}
 {% block title %}Jaguarete Kaa - Productos{% endblock %}
-{% block section %}
-<!-- <section class="jumbotron text-center">
-  <div class="container">
-    <h1 class="jumbotron-heading">Productos</h1>
-    <p class="lead text-muted mb-0">Le Lorem Ipsum est simplement du faux texte employé
-      dans la composition et la mise en page avant impression.</p>
-  </div>
-</section> -->
-{% endblock %}
+
 {% block content %}
 <div class="container">
   <div class="row">
@@ -28,7 +20,7 @@
   <div class="row">
     <div class="col-12 col-sm-3">
       <div class="card bg-light mb-3">
-        <div class="card-header bg-dark text-white text-uppercase"><i class="fa fa-list"></i>
+        <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i>
           Categorias</div>
         <ul class="list-group category_block">
           {% for cat in categorias %}
@@ -50,7 +42,7 @@
               <p class="card-text">{{p.descripcion|safe|truncatechars:"50"}}</p>
               <div class="row">
                 <div class="col">
-                  <p class="btn btn-danger btn-block">{{p.precio}} $us.</p>
+                  <p class="btn btn-danger btn-block disabled">{{p.precio}} $us.</p>
                 </div>
                 <div class="col">
                   <a href="" class="btn btn-success btn-block">Add to cart</a>
@@ -60,24 +52,10 @@
           </div>
         </div>
         {% endfor %}
-        <!-- <div class="col-12">
-          <nav aria-label="...">
-            <ul class="pagination">
-              <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1">Anterior</a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item active">
-                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="#">Siguiente</a>
-              </li>
-            </ul>
-          </nav>
-        </div> -->
       </div>
+      {% if paginator.page_range > '1' %}
+      {% include 'includes/pagination.html' %}
+      {% endif %}
     </div>
   </div>
 </div>

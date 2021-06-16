@@ -12,11 +12,11 @@
             <div class="card">
               <img class="card-img-top" src="{{p.imagen.url}}" alt="{{p.nombre}}">
               <div class="card-body">
-                <h4 class="card-title"><a href="#" title="Ver Producto">{{p.nombre}}</a></h4>
+                <h4 class="card-title"><a href="{{p.get_absolute_url}}" title="Ver Producto">{{p.nombre}}</a></h4>
                 <p class="card-text">{{p.descripcion|safe|truncatechars:"100"}}</p>
                 <div class="row">
                   <div class="col">
-                    <p class="btn btn-danger btn-block">{{p.precio}} $us.</p>
+                    <p class="btn btn-danger btn-block disabled">{{p.precio}} $us.</p>
                   </div>
                   <div class="col">
                     <a href="#" class="btn btn-success btn-block">Add carrito</a>

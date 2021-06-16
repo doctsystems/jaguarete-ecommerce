@@ -8,10 +8,15 @@ class ProductoDetailView(DetailView):
   queryset = Producto.objects.filter(is_disponible=True)
   # extra_context = {"form": CartAddProductForm()}
 
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context["categorias"] = Categoria.objects.all()
+    return context
+
 
 class ProductoListView(ListView):
   categoria = None
-  paginate_by = 6
+  paginate_by = 3
 
   def get_queryset(self):
     queryset = Producto.objects.filter(is_disponible=True)
