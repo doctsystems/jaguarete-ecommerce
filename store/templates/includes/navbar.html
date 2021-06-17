@@ -42,7 +42,7 @@
         </div>
         <a class="btn btn-success btn-sm ml-3" href="{% url 'cart:detalle'%}">
           <i class="fa fa-shopping-cart"></i> Carrito
-          <span class="badge badge-light">3</span>
+          <span class="badge badge-light" id="">{{request.session.cart|length}}</span>
         </a>
       </form>
     </div>

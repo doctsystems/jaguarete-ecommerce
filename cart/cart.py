@@ -12,11 +12,11 @@ class Cart:
       request.session[settings.CART_SESSION_ID] = {}
 
     self.cart = request.session[settings.CART_SESSION_ID]
+    self.num_products = len(self.cart.items())
     self.session = request.session
 
   def __iter__(self):
     cart = copy.deepcopy(self.cart)
-
     productos = Producto.objects.filter(id__in=cart)
     for producto in productos:
       cart[str(producto.id)]["producto"] = producto

@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_POST
 
-from producto.models import Producto
+from producto.models import Producto, Categoria
 
 from .cart import Cart
 from .forms import CartAddProductoForm
@@ -30,4 +30,5 @@ def cart_eliminar(request, producto_id):
 
 def cart_detalle(request):
   cart = Cart(request)
-  return render(request, "cart/cart_detail.html", {"cart": cart})
+  categorias = Categoria.objects.all()
+  return render(request, "cart/cart_detail.html", {"cart": cart, "categorias": categorias})

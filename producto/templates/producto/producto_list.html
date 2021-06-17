@@ -9,7 +9,7 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{% url 'store:home'%}">Home</a></li>
           <li class="breadcrumb-item"><a href="#">Categorias</a></li>
-          <li class="breadcrumb-item active" aria-current="page">{{categoria}}</li>
+          <li class="breadcrumb-item active" aria-current="page"> {% if not categoria %}TODAS{% else %}{{categoria}}{% endif %}</li>
         </ol>
       </nav>
     </div>
