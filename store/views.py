@@ -5,6 +5,7 @@ from producto.models import Categoria, Producto
 
 # Create your views here.
 
+
 class Home(generic.TemplateView):
   template_name = 'store/home.html'
 
@@ -14,6 +15,7 @@ class Home(generic.TemplateView):
     context["categorias"] = Categoria.objects.all()
     return context
 
+
 class About(generic.TemplateView):
   template_name = 'store/about.html'
 
@@ -22,21 +24,6 @@ class About(generic.TemplateView):
     context["categorias"] = Categoria.objects.all()
     return context
 
-class Categorias(generic.TemplateView):
-  template_name = 'store/categorias.html'
-
-  def get_context_data(self, **kwargs):
-    context = super().get_context_data(**kwargs)
-    context["categorias"] = Categoria.objects.all()
-    return context
-
-class NuevoProducto(generic.TemplateView):
-  template_name = 'store/nuevo_producto.html'
-
-  def get_context_data(self, **kwargs):
-    context = super().get_context_data(**kwargs)
-    context["categorias"] = Categoria.objects.all()
-    return context
 
 class Carrito(generic.TemplateView):
   template_name = 'store/carrito.html'
@@ -45,4 +32,3 @@ class Carrito(generic.TemplateView):
     context = super().get_context_data(**kwargs)
     context["categorias"] = Categoria.objects.all()
     return context
-

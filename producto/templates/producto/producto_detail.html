@@ -1,7 +1,7 @@
 {% extends 'bases/base.html' %}
 {% load static %}
 {% load widget_tweaks %}
-{% block title %}Jaguarete Kaa - Producto - {{producto}}{% endblock %}
+{% block title %}Jaguarete Kaa - {{producto}}{% endblock %}
 {% block content %}
 <div class="container">
   <div class="row">
@@ -9,7 +9,7 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{% url 'store:home'%}">Home</a></li>
-          <li class="breadcrumb-item"><a href="#">Productos</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'producto:lista'%}">Productos</a></li>
           <li class="breadcrumb-item active" aria-current="page">{{producto}}</li>
         </ol>
       </nav>
@@ -43,7 +43,7 @@
                     <i class="fa fa-minus"></i>
                   </button>
                 </div>
-                {% render_field form.cantidad class+="form-control text-center" %}{{ form.override }}
+                {% render_field form.cantidad class+="form-control" %}{{ form.override }}
                 <div class="input-group-append">
                   <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="">
                     <i class="fa fa-plus"></i>
@@ -52,6 +52,8 @@
               </div>
             </div>
             <button type="submit" class="btn btn-success btn-lg btn-block text-uppercase"><i class="fa fa-shopping-cart"></i> Add carrito</button>
+            <a href="{% url 'producto:actualizar' producto.slug %}" class="btn btn-info btn-block"><i class="fa fa-edit"></i> Editar</a>
+            <a href="{% url 'producto:eliminar' producto.slug %}" class="btn btn-danger btn-block"><i class="fa fa-trash"></i> Eliminar</a>
           </form>
           <div class="product_rassurance">
             <ul class="list-inline">

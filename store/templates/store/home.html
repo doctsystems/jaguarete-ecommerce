@@ -12,7 +12,7 @@
             <div class="card">
               <img class="card-img-top" src="{{p.imagen.url}}" alt="{{p.nombre}}">
               <div class="card-body">
-                <h4 class="card-title"><a href="{{p.get_absolute_url}}" title="Ver Producto">{{p.nombre}}</a></h4>
+                <h4 class="card-title text-primary">{{p.nombre}}</h4>
                 <p class="card-text">{{p.descripcion|safe|truncatechars:"100"}}</p>
                 <div class="row">
                   <div class="col">

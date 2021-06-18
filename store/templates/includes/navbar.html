@@ -17,7 +17,6 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             {% for cat in categorias %}
             <a class="dropdown-item" href="{{ cat.get_absolute_url }}">{{cat}}</a>
-            <!-- <div class="dropdown-divider"></div> -->
             {% endfor %}
           </div>
         </li>
@@ -27,9 +26,11 @@
         <li class="nav-item">
           <a class="nav-link" href="mailto:info@example.com">Contacto</a>
         </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link" href="{% url 'store:nuevo_producto'%}">Nuevo Producto</a>
-        </li> -->
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'producto:nuevo'%}">Nuevo Producto</a>
+        </li>
+        {% endif %}
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <div class="input-group input-group-sm">
