@@ -3,47 +3,55 @@
 <html lang="es">
 
 <head>
-	<title>{% block title %}Title{% endblock %}</title>
-	<!-- Site meta -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Jaguarete Kass - Ecommerce</title>
-	<!-- CSS -->
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"
-	 type="text/css">
-	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-	 rel="stylesheet" type="text/css">
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600" rel="stylesheet"
-	 type="text/css">
-	<link href="{% static 'store/css/main.css' %}" rel="stylesheet" type="text/css">
-	<!-- Extra CSS block -->
-	{% block extra_css %}{% endblock %}
+  <title>{% block title %}Title{% endblock %}</title>
+  <!-- Site meta -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Jaguarete Kass - Ecommerce</title>
+  <!-- CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600" rel="stylesheet" type="text/css">
+  <link href="{% static 'store/css/main.css' %}" rel="stylesheet" type="text/css">
+  <!-- Extra CSS block -->
+  {% block extra_css %}{% endblock %}
 </head>
 
 <body>
-	<!-- Navbar block -->
-	{% include 'includes/navbar.html' %}
-	{% block section %}
-	<section class="jumbotron text-center">
-		<div class="container">
-			<h1 class="jumbotron-heading">Jaguarete Kaa S.A.</h1>
-			<p class="lead text-muted mb-0">Añadiendo salud a tu vida de forma natural</p>
-		</div>
-	</section>
-	{% endblock %}
-	<!-- Content block -->
-	<div class="container">
-		{% block content %}{% endblock content %}
-	</div>
-	<!-- Footer block -->
-	{% include 'includes/footer.html' %}
-	<!-- JS block -->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" ></script>
-	<script src="{% static 'store/js/main.js' %}"></script>
-	<!-- Extra JS block -->
-	{% block extra_js %}{% endblock %}
+  <!-- Navbar block -->
+  {% include 'includes/navbar.html' %}
+  {% block section %}
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">Jaguarete Kaa S.A.</h1>
+      <p class="lead text-muted mb-0">Añadiendo salud a tu vida de forma natural</p>
+    </div>
+  </section>
+  {% endblock %}
+  <!-- Content block -->
+  <div class="container">
+    {% block content %}{% endblock content %}
+  </div>
+  <!-- Footer block -->
+  {% include 'includes/footer.html' %}
+  <!-- JS block -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="{% static 'store/js/main.js' %}"></script>
+  <!-- Extra JS block -->
+  {% block extra_js %}{% endblock %}
+  <script type="text/javascript">
+  $("#buscar").on('click', function() {
+    event.preventDefault();
+    if (!$('#f').val().trim().length) {
+      alert('Ingrese un filtro para buscar productos');
+      return false;
+    }
+    let new_url = "/productos/buscar/" + $("#f").val();
+    window.location = new_url;
+  });
+  </script>
 </body>
 
 </html>

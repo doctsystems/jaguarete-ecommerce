@@ -1,4 +1,5 @@
-from django.http import JsonResponse, HttpResponseRedirect, HttpResponse
+from django.db.models import Q
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
@@ -29,11 +30,17 @@ class ProductoListView(ListView):
       self.categoria = get_object_or_404(Categoria, slug=categoria_slug)
       queryset = queryset.filter(categoria=self.categoria)
 
+    filter_slug = self.kwargs.get("filter")
+    if filter_slug:
+      queryset = queryset.filter(
+        Q(nombre__icontains=filter_slug) | Q(descripcion__icontains=filter_slug)
+      )
     return queryset
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     context["categoria"] = self.categoria
+    context["filter"] = self.kwargs.get("filter")
     context["categorias"] = Categoria.objects.all()
     return context
 
@@ -83,3 +90,4 @@ class ProductoDeleteView(DeleteView):
     context = super().get_context_data(**kwargs)
     context['categorias'] = Categoria.objects.all()
     return context
+

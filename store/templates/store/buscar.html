@@ -4,7 +4,7 @@
 {% block section %}
 <section class="jumbotron text-center">
   <div class="container">
-    <h1 class="jumbotron-heading">Categoria: {% if not categoria %}TODAS{% else %}{{categoria}}{% endif %}</h1>
+    <h1 class="jumbotron-heading">Buscar: {{filtro}}</h1>
     <p class="lead text-muted mb-0">Le Lorem Ipsum est simplement du faux.</p>
   </div>
 </section>
@@ -16,8 +16,8 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{% url 'store:home'%}">Home</a></li>
-          <li class="breadcrumb-item"><a href="#">Categorias</a></li>
-          <li class="breadcrumb-item active" aria-current="page">{% if not categoria %}TODAS{% else %}{{categoria}}{% endif %}</li>
+          <li class="breadcrumb-item"><a href="{% url 'producto:lista'%}">Productos</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{filtro}}</li>
         </ol>
       </nav>
     </div>
@@ -40,7 +40,7 @@
     </div>
     <div class="col">
       <div class="row">
-        {% for p in producto_list %}
+        {% for p in productos %}
         <div class="col-12 col-md-6 col-lg-4">
           <div class="card mb-3">
             <img class="card-img-top" src="{{p.imagen.url}}" alt="{{p.nombre}}">
@@ -63,14 +63,14 @@
           <div class="card mb-3">
             <img class="card-img-top" src="/media/img/nn.png" alt="NN">
             <div class="card-body">
-              <p class="card-text">No existen productos.</p>
+              <p class="card-text">No existen prodructos.</p>
             </div>
           </div>
         </div>
         {% endfor %}
       </div>
       {% if is_paginated %}
-      {% include 'includes/pagination.html' %}
+      {% include 'includes/pagination.html' with page=page_obj %}
       {% endif %}
     </div>
   </div>

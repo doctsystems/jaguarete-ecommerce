@@ -32,13 +32,11 @@
         </li>
         {% endif %}
       </ul>
-      <form class="form-inline my-2 my-lg-0">
+      <form method='post' action='/buscar/' class="form-inline my-2 my-lg-0">
         <div class="input-group input-group-sm">
-          <input type="text" class="form-control" placeholder="Buscar...">
+          <input id="f" name="f" type="search" class="form-control" placeholder="Buscar">
           <div class="input-group-append">
-            <button type="button" class="btn btn-secondary btn-number">
-              <i class="fa fa-search"></i>
-            </button>
+            <a id="buscar" class="nav-link btn btn-secondary btn-number" href="/productos/buscar/"><i class="fa fa-search"></i></a>
           </div>
         </div>
         <a class="btn btn-success btn-sm ml-3" href="{% url 'cart:detalle'%}">

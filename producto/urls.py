@@ -8,4 +8,5 @@ urlpatterns = [
   path("eliminar/<slug:slug>/", ProductoDeleteView.as_view(), name="eliminar"),
   path("<slug:slug>/", ProductoDetailView.as_view(), name="detalle"),
   path("categoria/<slug:slug>/", ProductoListView.as_view(), name="lista_por_categoria"),
+  path("buscar/<str:filter>/", ProductoListView.as_view(), name="buscar"),
 ]
