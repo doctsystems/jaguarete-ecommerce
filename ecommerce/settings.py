@@ -45,7 +45,7 @@ ROOT_URLCONF = 'ecommerce.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -107,4 +107,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Cart
 CART_SESSION_ID = "cart"
 CART_ITEM_MAX_CANTIDAD = 10
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/accounts/login/'
 

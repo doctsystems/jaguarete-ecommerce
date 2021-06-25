@@ -8,8 +8,9 @@ from django.conf.urls.static import static
 urlpatterns = [
   path('admin/', admin.site.urls),
   path('', include(('store.urls', 'store'), namespace='store')),
-  path("productos/", include(('producto.urls', 'producto'), namespace='producto')),
-  path("cart/", include(('cart.urls', 'cart'), namespace='cart')),
+  path('accounts/', include('django.contrib.auth.urls')),
+  path('cart/', include(('cart.urls', 'cart'), namespace='cart')),
+  path('productos/', include(('producto.urls', 'producto'), namespace='producto')),
 ]
 
 # static and media Urls

@@ -4,7 +4,11 @@
 {% block section %}
 <section class="jumbotron text-center">
   <div class="container">
+    {% if filter %}
+    <h1 class="jumbotron-heading">Buscar: {{filter}}</h1>
+    {% else %}
     <h1 class="jumbotron-heading">Categoria: {% if not categoria %}TODAS{% else %}{{categoria}}{% endif %}</h1>
+    {% endif %}
     <p class="lead text-muted mb-0">Le Lorem Ipsum est simplement du faux.</p>
   </div>
 </section>
@@ -16,8 +20,13 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{% url 'store:home'%}">Home</a></li>
+          {% if filter %}
+          <li class="breadcrumb-item"><a href="{% url 'producto:lista'%}">Productos</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{filter}}</li>
+          {% else %}
           <li class="breadcrumb-item"><a href="#">Categorias</a></li>
           <li class="breadcrumb-item active" aria-current="page">{% if not categoria %}TODAS{% else %}{{categoria}}{% endif %}</li>
+          {% endif %}
         </ol>
       </nav>
     </div>

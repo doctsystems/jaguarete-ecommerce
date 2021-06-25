@@ -26,13 +26,13 @@
         <li class="nav-item">
           <a class="nav-link" href="mailto:info@example.com">Contacto</a>
         </li>
-        {% if user.is_authenticated %}
+        {% if perms.producto.add_producto %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'producto:nuevo'%}">Nuevo Producto</a>
         </li>
         {% endif %}
       </ul>
-      <form method='post' action='/buscar/' class="form-inline my-2 my-lg-0">
+      <form method='GET' action='/buscar/' class="form-inline my-2 my-lg-0">
         <div class="input-group input-group-sm">
           <input id="f" name="f" type="search" class="form-control" placeholder="Buscar">
           <div class="input-group-append">

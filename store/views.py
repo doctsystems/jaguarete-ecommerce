@@ -1,6 +1,7 @@
 from django.db.models import Q
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import generic
 from django.views.decorators.csrf import csrf_exempt
 from producto.models import Categoria, Producto
@@ -29,9 +30,10 @@ class About(generic.TemplateView):
 def Buscar(request):
   template_name = 'store/buscar.html'
 
-  if request.method == "POST":
-    queryset = Producto.objects.filter(is_disponible=True)
-    filter_slug = request.POST.get('f')
+  # if request.method == "POST":
+  queryset = Producto.objects.filter(is_disponible=True)
+  filter_slug = request.GET.get('f')
+  if filter_slug:
     query = queryset.filter(
       Q(nombre__icontains=filter_slug) | Q(descripcion__icontains=filter_slug)
     )
@@ -44,8 +46,15 @@ def Buscar(request):
     except EmptyPage:
       productos = paginator.page(paginator.num_pages)
     context = {
-      'productos': productos,
+      'page_obj': productos,
       'categorias': Categoria.objects.all(),
       'filtro': filter_slug
     }
     return render(request, template_name, context)
+  else:
+    return redirect('store:home')
+
+
+class Forbidden(LoginRequiredMixin, generic.TemplateView):
+  login_url = 'login'
+  template_name = 'store/403.html'

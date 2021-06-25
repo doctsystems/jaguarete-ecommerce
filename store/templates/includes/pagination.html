@@ -1,3 +1,36 @@
+{% load static %}
+
+{% if filtro %}
+<div class="row mt-3 mt-lg-4">
+  <nav aria-label="Page navigation" class="col-md-12">
+    <ul class="pagination justify-content-center">
+      {% if page_obj.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?f={{filtro}}&page={{ page_obj.previous_page_number }}">&laquo;</a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1">&laquo;</a>
+      </li>
+      {% endif %}
+      {% for i in page_obj.paginator.page_range %}
+      <li class="page-item {% if page_obj.number == i %}active{% endif %}">
+        <a class="page-link" href="?f={{filtro}}&page={{ i }}">{{ i }}</a>
+      </li>
+      {% endfor %}
+      {% if page_obj.has_next %}
+      <li class="page-item ">
+        <a class="page-link" href="?f={{filtro}}&page={{ page_obj.next_page_number }}">&raquo;</a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1">&raquo;</a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+</div>
+{% else%}
 <div class="row mt-3 mt-lg-4">
   <nav aria-label="Page navigation" class="col-md-12">
     <ul class="pagination justify-content-center">
@@ -27,30 +60,4 @@
     </ul>
   </nav>
 </div>
-<!-- <div>
-  {% if page.has_previous %}
-  <a href="?page={{ page.previous_page_number }}">Anterior</a>
-  {% endif %}
-  Página {{ page.number }} de {{ page.paginator.num_pages }}.
-  {% if page.has_next %}
-  <a href="?page={{ page.next_page_number }}">Próxima</a>
-  {% endif %}
-</div> -->
-<!-- <div class="pagination">
-  <span class="step-links">
-      {% if page_obj.has_previous %}
-          <a href="?page=1">&laquo; first</a>
-          <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-      {% endif %}
-
-      <span class="current">
-          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-      </span>
-
-      {% if page_obj.has_next %}
-          <a href="?page={{ page_obj.next_page_number }}">next</a>
-          <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-      {% endif %}
-  </span>
-</div>
- -->
+{% endif %}

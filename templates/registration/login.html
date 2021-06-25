@@ -1,0 +1,60 @@
+{% extends 'bases/base.html' %}
+{% load static %}
+{% block title %}Jaguarete Kaa - Login{% endblock %}
+{% block section %}
+<section class="jumbotron text-center">
+  <div class="container">
+    <h1 class="jumbotron-heading">Bienvenido!</h1>
+    <p class="lead text-muted mb-0">Inicie sesión usando su nombre de usuario y contraseña</p>
+  </div>
+</section>
+{% endblock %}
+{% block content %}
+{% if form.errors %}
+<p class="text-danger text-center">Usuario y/o Contraseña incorrectos, verifique e intente nuevamente.</p>
+{% endif %}
+<div class="container">
+  <div class="row rounded align-items-center mb-5">
+    <div class="col-12 col-lg-6 m-auto">
+      <div class="shadow-sm bg-white rounded">
+        <div class="p-3 p-md-3">
+          {% if next %}
+          {% if user.is_authenticated %}
+          <p class="text-danger text-center">Tu cuenta no tiene acceso a esta página. Para proceder,
+            por favor inicie sesión con una cuenta que tenga acceso.</p>
+          {% else %}
+          <p class="text-danger text-center">Inicie sesión para ver esta página.</p>
+          {% endif %}
+          {% endif %}
+          <form method="post" action="" class="">
+            {% csrf_token %}
+            <div>
+              <div class="form-group">
+                <label for="">Usuario</label>
+                <input type="text" name="username" autofocus maxlength="150" autocomplete="off" required id="id_username" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="">Constraseña</label>
+                <input type="password" name="password" autocomplete="off" required id="id_password" class="form-control">
+              </div>
+              <div class="form-group row pt-0 pt-md-3">
+                <div class="col-6">
+                  <span class="">
+                    <label><input type="checkbox" id="cbox1" value="first_checkbox" class=""> Recordarme</label>
+                  </span>
+                </div>
+                <div class="col-6 text-right">
+                  <a id="" href="">Olvido su contraseña?</a>
+                </div>
+              </div>
+              <div class="text-center">
+                <input type="submit" name="" value="Iniciar Sesion" id="inputLogin" class="btn btn-lg btn-primary mb-0 mt-lg-0" />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

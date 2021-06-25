@@ -1,4 +1,6 @@
 from django.db.models import Q
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.models import AnonymousUser
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
@@ -6,16 +8,6 @@ from django.urls import reverse_lazy
 from cart.forms import CartAddProductoForm
 from .models import Categoria, Producto
 from .forms import ProductoForm
-
-
-class ProductoDetailView(DetailView):
-  queryset = Producto.objects.filter(is_disponible=True)
-  extra_context = {"form": CartAddProductoForm()}
-
-  def get_context_data(self, **kwargs):
-    context = super().get_context_data(**kwargs)
-    context["categorias"] = Categoria.objects.all()
-    return context
 
 
 class ProductoListView(ListView):
@@ -45,12 +37,30 @@ class ProductoListView(ListView):
     return context
 
 
-class ProductoCreateView(CreateView):
+class ProductoDetailView(PermissionRequiredMixin, DetailView):
+  queryset = Producto.objects.filter(is_disponible=True)
+  extra_context = {"form": CartAddProductoForm()}
+  permission_required = 'producto.view_producto'
+  login_url = 'login'
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context["categorias"] = Categoria.objects.all()
+    return context
+
+  def handle_no_permission(self):
+    if not self.request.user == AnonymousUser():
+      self.login_url = 'store:forbidden'
+    return HttpResponseRedirect(reverse_lazy(self.login_url))
+
+
+class ProductoCreateView(PermissionRequiredMixin, CreateView):
   model = Producto
   template_name = 'producto/producto_create.html'
   form_class = ProductoForm
   success_url = reverse_lazy('producto:lista')
-  # permission_required = 'add_persona'
+  permission_required = 'producto.add_producto'
+  login_url = 'login'
 
   def post(self, request, *args, **kwargs):
     form = ProductoForm(request.POST, request.FILES)
@@ -68,26 +78,44 @@ class ProductoCreateView(CreateView):
     context['categorias'] = Categoria.objects.all()
     return context
 
+  def handle_no_permission(self):
+    if not self.request.user == AnonymousUser():
+      self.login_url = 'store:forbidden'
+    return HttpResponseRedirect(reverse_lazy(self.login_url))
 
-class ProductoUpdateView(UpdateView):
+
+class ProductoUpdateView(PermissionRequiredMixin, UpdateView):
   model = Producto
   form_class = ProductoForm
   template_name = 'producto/producto_update.html'
   success_url = reverse_lazy('producto:lista')
+  permission_required = 'producto.change_producto'
+  login_url = 'login'
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     context['categorias'] = Categoria.objects.all()
     return context
 
+  def handle_no_permission(self):
+    if not self.request.user == AnonymousUser():
+      self.login_url = 'store:forbidden'
+    return HttpResponseRedirect(reverse_lazy(self.login_url))
 
-class ProductoDeleteView(DeleteView):
+
+class ProductoDeleteView(PermissionRequiredMixin, DeleteView):
   model = Producto
   template_name = 'producto/producto_delete.html'
   success_url = reverse_lazy('producto:lista')
+  permission_required = 'producto.delete_producto'
+  login_url = 'login'
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     context['categorias'] = Categoria.objects.all()
     return context
 
+  def handle_no_permission(self):
+    if not self.request.user == AnonymousUser():
+      self.login_url = 'store:forbidden'
+    return HttpResponseRedirect(reverse_lazy(self.login_url))

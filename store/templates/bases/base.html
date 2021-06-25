@@ -19,7 +19,10 @@
 
 <body>
   <!-- Navbar block -->
+  {% block navbar %}
   {% include 'includes/navbar.html' %}
+  {% endblock %}
+
   {% block section %}
   <section class="jumbotron text-center">
     <div class="container">
@@ -33,7 +36,9 @@
     {% block content %}{% endblock content %}
   </div>
   <!-- Footer block -->
+  {% block footer %}
   {% include 'includes/footer.html' %}
+  {% endblock %}
   <!-- JS block -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
