@@ -1,23 +1,97 @@
-{% extends "registration/layout.html" %}
-
+{% extends 'bases/base.html' %}
+{% load static %}
+{% block title %}Jaguarete Kaa - Resgister{% endblock %}
+{% block section %}
+<section class="jumbotron text-center">
+  <div class="container">
+    <h1 class="jumbotron-heading">Registro de usuarios</h1>
+    <p class="lead text-muted mb-0">Llene todos los campos</p>
+  </div>
+</section>
+{% endblock %}
 {% block content %}
-
-  <h2>Formulario de Registro</h2>
-  <form method="post">
-    {% csrf_token %}
-    {% for campo in form %}
-      <p>
-        {{ campo.label_tag }}<br>
-        {{ campo }}
-        {% if campo.help_text %}
-          <small style="color: grey">{{ campo.help_text }}</small>
-        {% endif %}
-        {% for error in campo.errors %}
-          <p style="color: red">{{ error }}</p>
-        {% endfor %}
-      </p>
+<form method="post" action="{% url 'users:register' %}" enctype="multipart/form-data">
+  {% csrf_token %}
+  {% for campo in form %}
+    {% for error in campo.errors %}
+    <p style="color: red">{{ error }}</p>
     {% endfor %}
-    <button type="submit">Confirmar Registro</button>
-  </form>
-  
+  {% endfor %}
+  <div class="row">
+    <div class="col-12">
+      <div class="rounded shadow-lg bg-white">
+        <div class="row p-3 p-lg-4">
+          <div class="col-12 col-md-6 ">
+            <div class="p-3 p-lg-4 rounded border ">
+              <h4 class="mb-3 mb-lg-4">Informacion Personal</h4>
+              <div class="form-group row mb-2">
+                <label class="col-lg-4 col-form-label mb-2 mb-lg-0">
+                  Nombres</label>
+                <div class="col-lg-8">
+                  {{form.first_name}}
+                </div>
+              </div>
+              <div class="form-group row mb-2">
+                <label class="col-lg-4 col-form-label mb-2 mb-lg-0">
+                  Apellidos</label>
+                <div class="col-lg-8">{{form.last_name}}</div>
+              </div>
+              <div class="form-group row mb-2">
+                <label class="col-lg-4 col-form-label mb-2 mb-lg-0">
+                  Direccion</label>
+                <div class="col-lg-8">{{form.direction}}</div>
+              </div>
+              <div class="form-group row mb-2">
+                <label class="col-lg-4 col-form-label mb-2 mb-lg-0">
+                  Pais</label>
+                <div class="col-lg-8">{{form.country}}</div>
+              </div>
+              <div class="form-group row mb-2">
+                <label class="col-lg-4 col-form-label mb-2 mb-lg-0">
+                  Telefone</label>
+                <div class="col-lg-8">{{form.telephone}}</div>
+              </div>
+              <div class="form-group row mb-1">
+                <label class="col-lg-4 col-form-label mb-2 mb-lg-0">
+                  Avatar</label>
+                <div class="col-lg-8">{{form.avatar}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 mt-3 mt-md-0">
+            <div class="p-3 p-lg-4 rounded border">
+              <h4 class="mb-3 mb-lg-4">Info de Usuario</h4>
+              <div class="form-group row mb-2">
+                <label class="col-lg-4 col-form-label mb-2 mb-lg-0">
+                  Username</label>
+                <div class="col-lg-8">{{form.username}}</div>
+              </div>
+              <div class="form-group row mb-2">
+                <label class="col-lg-4 col-form-label mb-2 mb-lg-0">
+                  Email</label>
+                <div class="col-lg-8">{{form.email}}</div>
+              </div>
+              <div class="form-group row mb-2">
+                <label class="col-lg-4 col-form-label mb-2 mb-lg-0">
+                  Password</label>
+                <div class="col-lg-8">{{form.password1}}</div>
+              </div>
+              <div class="form-group row mb-2">
+                <label class="col-lg-4 col-form-label mb-2 mb-lg-0">
+                  Confirmar Pass</label>
+                <div class="col-lg-8">{{form.password2}}</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 mt-2 mb-lg-4">
+                <button type="submit" class="btn btn-lg btn-primary">Registrar</button>
+                <a href="{% url 'store:home'%}" class="btn btn-lg btn-danger">Cancel</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
 {% endblock %}

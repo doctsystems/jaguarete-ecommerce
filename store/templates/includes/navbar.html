@@ -31,6 +31,15 @@
           <a class="nav-link" href="{% url 'producto:nuevo'%}">Nuevo Producto</a>
         </li>
         {% endif %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'users:register'%}">Registrarse</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'login'%}">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout'%}">Logout</a>
+        </li>
       </ul>
       <form method='GET' action='/buscar/' class="form-inline my-2 my-lg-0">
         <div class="input-group input-group-sm">
