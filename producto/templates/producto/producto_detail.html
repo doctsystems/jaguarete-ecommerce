@@ -51,9 +51,12 @@
                 </div>
               </div>
             </div>
-            <button type="submit" class="btn btn-success btn-lg btn-block text-uppercase"><i class="fa fa-shopping-cart"></i> Add carrito</button>
-            <a href="{% url 'producto:actualizar' producto.slug %}" class="btn btn-info btn-block"><i class="fa fa-edit"></i> Editar</a>
-            <a href="{% url 'producto:eliminar' producto.slug %}" class="btn btn-danger btn-block"><i class="fa fa-trash"></i> Eliminar</a>
+            <button type="submit" class="btn btn-success btn-lg btn-block text-uppercase"
+              {% if not perms.users.can_view_cart %}disabled{% endif %}>
+              <i class="fa fa-shopping-cart"></i> Add carrito
+            </button>
+            <a href="{% url 'producto:actualizar' producto.slug %}" class="{% if not perms.producto.change_producto %}disabled{% endif %} btn btn-info btn-block"><i class="fa fa-edit"></i> Editar</a>
+            <a href="{% url 'producto:eliminar' producto.slug %}" class="{% if not perms.producto.delete_producto %}disabled{% endif %} btn btn-danger btn-block"><i class="fa fa-trash"></i> Eliminar</a>
           </form>
           <div class="product_rassurance">
             <ul class="list-inline">

@@ -7,6 +7,8 @@ from .forms import CartAddProductoForm
 
 
 @require_POST
+@login_required
+@permission_required('users.can_add_cart', raise_exception=True)
 def cart_add(request, producto_id):
   cart = Cart(request)
   producto = get_object_or_404(Producto, id=producto_id)
@@ -23,6 +25,8 @@ def cart_add(request, producto_id):
 
 
 @require_POST
+@login_required
+@permission_required('users.can_delete_cart', raise_exception=True)
 def cart_eliminar(request, producto_id):
   cart = Cart(request)
   producto = get_object_or_404(Producto, id=producto_id)
@@ -31,6 +35,8 @@ def cart_eliminar(request, producto_id):
 
 
 @require_POST
+@login_required
+@permission_required('users.can_delete_cart', raise_exception=True)
 def cart_clear(request):
   cart = Cart(request)
   cart.clear()
@@ -38,6 +44,7 @@ def cart_clear(request):
 
 
 @login_required
+@permission_required('users.can_view_cart', raise_exception=True)
 def cart_detalle(request):
   cart = Cart(request)
   return render(request, "cart/cart_detail.html", {"cart": cart})
