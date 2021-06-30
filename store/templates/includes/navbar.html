@@ -51,7 +51,7 @@
             <a id="buscar" class="nav-link btn btn-secondary btn-number" href="/productos/buscar/"><i class="fa fa-search"></i></a>
           </div>
         </div>
-        <a class="btn btn-success btn-sm ml-3" href="{% url 'cart:detalle'%}">
+        <a class="{% if not perms.users.can_view_cart %}disabled{% endif %} btn btn-success btn-sm ml-3" href="{% url 'cart:detalle'%}">
           <i class="fa fa-shopping-cart"></i> Carrito
           <span class="badge badge-light" id="">{{request.session.cart|length}}</span>
         </a>
