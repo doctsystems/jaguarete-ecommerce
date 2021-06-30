@@ -14,8 +14,11 @@ def cart_add(request, producto_id):
   form = CartAddProductoForm(request.POST)
   if form.is_valid():
     cart_add = form.cleaned_data
-    cart.add(producto=producto, cantidad=cart_add["cantidad"], override_cantidad=cart_add["override"])
-
+    cart.add(
+      producto=producto,
+      cantidad=cart_add["cantidad"],
+      override_cantidad=cart_add["override"]
+    )
   return redirect("cart:detalle")
 
 
@@ -26,8 +29,15 @@ def cart_eliminar(request, producto_id):
   cart.remove(producto)
   return redirect("cart:detalle")
 
+
+@require_POST
+def cart_clear(request):
+  cart = Cart(request)
+  cart.clear()
+  return redirect("cart:detalle")
+
+
 @login_required
 def cart_detalle(request):
   cart = Cart(request)
-  categorias = Categoria.objects.all()
-  return render(request, "cart/cart_detail.html", {"cart": cart, "categorias": categorias})
+  return render(request, "cart/cart_detail.html", {"cart": cart})

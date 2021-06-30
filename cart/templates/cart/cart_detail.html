@@ -76,7 +76,13 @@
           <a href="{% url 'producto:lista'%}" class="btn btn-block btn-primary">Seguir comprando</a>
         </div>
         <div class="col-sm-3 col-md-3 text-right">
-          <button class="btn btn-block btn-success text-uppercase">Finalizar compra</button>
+          <a href="#" class="btn btn-block btn-success">Seguir comprando</a>
+        </div>
+        <div class="col-sm-3 col-md-3 text-right">
+          <form action="{% url 'cart:clear' %}" method="post">
+            {% csrf_token %}
+            <input class="btn btn-block btn-danger" type="submit" value="Clear cart">
+          </form>
         </div>
       </div>
     </div>
