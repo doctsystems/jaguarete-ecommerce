@@ -2,44 +2,8 @@
 {% load static %}
 {% block title %}Jaguarete Kaa - Eliminar {{producto}}{% endblock %}
 {% block content %}
-<!-- <div class="container">
-  <div class="row">
-    <div class="col">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{% url 'store:home'%}">Home</a></li>
-          <li class="breadcrumb-item"><a href="{% url 'producto:lista'%}">Productos</a></li>
-          <li class="breadcrumb-item active" aria-current="page">{{producto}}</li>
-        </ol>
-      </nav>
-    </div>
-  </div>
-</div> -->
-<!-- <div class="container mb-5">
-  <form action="" enctype="multipart/form-data" method="post">
-    {% csrf_token %}
-    <div class="row p-3 ">
-      <div class="col-12 col-md-6">
-        <div class="form-group row mt-3">
-          <h4 class="col-12 text-center">Esta seguro que desea eliminar el producto: "{{ producto }}"?</h4>
-        </div>
-      </div>
-    </div>
-    <div class="col-auto">
-      <a class="btn btn-secondary" type="button" href="{{ request.META.HTTP_REFERER }}">Cancelar</a>
-      <input type="submit" class="btn btn-danger" value="Eliminar Producto">
-    </div>
-  </form>
-</div> -->
 <div class="employee-dash ">
   <div class="container employee-dash-wrap">
-    <!-- <div class="row">
-      <div class="col-12 text-center">
-        <h1 class="mt-0">
-          <span id="">Eliminar producto</span>
-        </h1>
-      </div>
-    </div> -->
     <div class="row">
       <div class="col-12 col-lg-10 col-xl-7 m-auto">
         <form id="myform" action="" method="POST">

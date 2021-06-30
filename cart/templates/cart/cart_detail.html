@@ -50,7 +50,6 @@
               <td class="text-right">{{item.precio}} $us.</td>
               <td class="text-right">{{item.precio_total}} $us.</td>
               <td class="text-right">
-                <!-- <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>  -->
                 <form action="{% url 'cart:eliminar' producto.id %}" method="post">
                   {% csrf_token %}
                   <input class="btn btn-danger" type="submit" value="Eliminar">

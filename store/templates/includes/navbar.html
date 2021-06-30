@@ -15,7 +15,7 @@
             Categorias
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            {% for cat in categorias %}
+            {% for cat in categories %}
             <a class="dropdown-item" href="{{ cat.get_absolute_url }}">{{cat}}</a>
             {% endfor %}
           </div>
@@ -31,15 +31,18 @@
           <a class="nav-link" href="{% url 'producto:nuevo'%}">Nuevo Producto</a>
         </li>
         {% endif %}
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout'%}">Logout</a>
+        </li>
+        {% else %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'users:register'%}">Registrarse</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'login'%}">Login</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'logout'%}">Logout</a>
-        </li>
+        {% endif %}
       </ul>
       <form method='GET' action='/buscar/' class="form-inline my-2 my-lg-0">
         <div class="input-group input-group-sm">

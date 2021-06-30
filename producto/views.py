@@ -33,7 +33,6 @@ class ProductoListView(ListView):
     context = super().get_context_data(**kwargs)
     context["categoria"] = self.categoria
     context["filter"] = self.kwargs.get("filter")
-    context["categorias"] = Categoria.objects.all()
     return context
 
 
@@ -42,11 +41,6 @@ class ProductoDetailView(PermissionRequiredMixin, DetailView):
   extra_context = {"form": CartAddProductoForm()}
   permission_required = 'producto.view_producto'
   login_url = 'login'
-
-  def get_context_data(self, **kwargs):
-    context = super().get_context_data(**kwargs)
-    context["categorias"] = Categoria.objects.all()
-    return context
 
   def handle_no_permission(self):
     if not self.request.user == AnonymousUser():
@@ -69,14 +63,9 @@ class ProductoCreateView(PermissionRequiredMixin, CreateView):
       return HttpResponseRedirect(self.success_url)
     self.object = None
     context = self.get_context_data(**kwargs)
-    context['categorias'] = Categoria.objects.all()
+    # context['categorias'] = Categoria.objects.all()
     context['form'] = form
     return render(request, self.template_name, context)
-
-  def get_context_data(self, **kwargs):
-    context = super().get_context_data(**kwargs)
-    context['categorias'] = Categoria.objects.all()
-    return context
 
   def handle_no_permission(self):
     if not self.request.user == AnonymousUser():
@@ -92,11 +81,6 @@ class ProductoUpdateView(PermissionRequiredMixin, UpdateView):
   permission_required = 'producto.change_producto'
   login_url = 'login'
 
-  def get_context_data(self, **kwargs):
-    context = super().get_context_data(**kwargs)
-    context['categorias'] = Categoria.objects.all()
-    return context
-
   def handle_no_permission(self):
     if not self.request.user == AnonymousUser():
       self.login_url = 'store:forbidden'
@@ -109,11 +93,6 @@ class ProductoDeleteView(PermissionRequiredMixin, DeleteView):
   success_url = reverse_lazy('producto:lista')
   permission_required = 'producto.delete_producto'
   login_url = 'login'
-
-  def get_context_data(self, **kwargs):
-    context = super().get_context_data(**kwargs)
-    context['categorias'] = Categoria.objects.all()
-    return context
 
   def handle_no_permission(self):
     if not self.request.user == AnonymousUser():

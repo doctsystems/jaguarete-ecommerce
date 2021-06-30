@@ -1,6 +1,5 @@
 from django.contrib import admin
 from django.contrib.auth import admin as auth_admin
-
 from .forms import UserChangeForm, UserCreationForm
 from .models import User
 
@@ -14,19 +13,16 @@ class UserAdmin(auth_admin.UserAdmin):
     'id',
     'first_name',
     'last_name',
+    'username',
     'email',
-    'is_staff',
-    'is_active',
-    'is_superuser',
   )
   list_filter = (
+    'username',
     'email',
-    'is_staff',
-    'is_active',
   )
   fieldsets = (
     ('User info', {
-      'fields': ('email', 'password')
+      'fields': ('username', 'email', 'password')
     }),
     (
       'Personal info', {
@@ -39,12 +35,15 @@ class UserAdmin(auth_admin.UserAdmin):
     ('Permissions', {
       'fields': ('is_active', 'is_staff')
     }),
+    ('Groups', {
+      'fields': ('groups',)
+    }),
   )
   add_fieldsets = (
     (None, {
       'classes': ('wide', ),
-      'fields': ('email', 'password1', 'password2'),
+      'fields': ('username', 'email', 'password1', 'password2'),
     }),
   )
-  search_fields = ('email', )
+  search_fields = ('username', 'email')
   ordering = ('-id', )

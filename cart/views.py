@@ -1,8 +1,7 @@
+from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_POST
-
 from producto.models import Producto, Categoria
-
 from .cart import Cart
 from .forms import CartAddProductoForm
 
@@ -27,7 +26,7 @@ def cart_eliminar(request, producto_id):
   cart.remove(producto)
   return redirect("cart:detalle")
 
-
+@login_required
 def cart_detalle(request):
   cart = Cart(request)
   categorias = Categoria.objects.all()

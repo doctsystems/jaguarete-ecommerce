@@ -39,7 +39,7 @@
         <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i>
           Categorias</div>
         <ul class="list-group category_block">
-          {% for cat in categorias %}
+          {% for cat in categories %}
           <a class="text-decoration-none list-group-item list-group-item-light {% if categoria == cat %}active{% endif %}" href="{{ cat.get_absolute_url }}">
             {{cat}}
           </a>

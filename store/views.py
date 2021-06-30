@@ -13,24 +13,17 @@ class Home(generic.TemplateView):
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     context["productos"] = Producto.objects.filter(is_disponible=True)[:10]
-    context["categorias"] = Categoria.objects.all()
     return context
 
 
 class About(generic.TemplateView):
   template_name = 'store/about.html'
 
-  def get_context_data(self, **kwargs):
-    context = super().get_context_data(**kwargs)
-    context["categorias"] = Categoria.objects.all()
-    return context
-
 
 @csrf_exempt
 def Buscar(request):
   template_name = 'store/buscar.html'
 
-  # if request.method == "POST":
   queryset = Producto.objects.filter(is_disponible=True)
   filter_slug = request.GET.get('f')
   if filter_slug:
@@ -47,7 +40,6 @@ def Buscar(request):
       productos = paginator.page(paginator.num_pages)
     context = {
       'page_obj': productos,
-      'categorias': Categoria.objects.all(),
       'filtro': filter_slug
     }
     return render(request, template_name, context)

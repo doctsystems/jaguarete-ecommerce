@@ -1,16 +1,7 @@
 from django import forms
-# from django.contrib.auth import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.forms import ModelForm
 from .models import User
-
-# class UserChangeForm(forms.UserChangeForm):
-#   class Meta(forms.UserChangeForm.Meta):
-#     model = User
-
-# class UserCreationForm(forms.UserCreationForm):
-#   class Meta(forms.UserCreationForm.Meta):
-#     model = User
 
 
 class UserCreationForm(ModelForm):
