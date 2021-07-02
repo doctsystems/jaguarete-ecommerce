@@ -48,9 +48,7 @@ class Cart:
       self.cart[producto_id]["cantidad"] = cantidad
     else:
       self.cart[producto_id]["cantidad"] += cantidad
-
     self.cart[producto_id]["cantidad"] = min(10, self.cart[producto_id]["cantidad"])
-
     self.save()
 
   def remove(self, producto):

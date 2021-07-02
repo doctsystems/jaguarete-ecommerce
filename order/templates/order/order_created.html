@@ -1,0 +1,15 @@
+{% extends 'bases/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}Jaguarete Kaa - Pedido realizado{% endblock title %}
+{% block content %}
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="block text-center">
+      <h2 class="text-center">Gracias por su compra!</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, sed.</p>
+      <a href="{% url 'store:home' %}" class="btn btn-main mt-20">Continuar comprando</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

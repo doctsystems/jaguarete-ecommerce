@@ -22,12 +22,14 @@ INSTALLED_APPS = [
 
     # Other apps
     "widget_tweaks",
+    "crispy_forms",
 
     # My apps
     'users.apps.UsersConfig',
     'store.apps.StoreConfig',
     'producto.apps.ProductoConfig',
     'cart.apps.CartConfig',
+    'order.apps.OrderConfig',
 ]
 
 MIDDLEWARE = [
