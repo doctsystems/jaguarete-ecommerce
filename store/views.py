@@ -28,7 +28,7 @@ def Buscar(request):
       Q(nombre__icontains=filter_slug) | Q(descripcion__icontains=filter_slug)
     )
     page = request.GET.get('page', 1)
-    paginator = Paginator(query, 3)
+    paginator = Paginator(query, 6)
     try:
       productos = paginator.page(page)
     except PageNotAnInteger:
