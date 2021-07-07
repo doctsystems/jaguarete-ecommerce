@@ -9,12 +9,12 @@ class UserCreationForm(ModelForm):
   password2 = forms.CharField(label='Repeat Password', widget=forms.PasswordInput())
   username = forms.CharField(widget=forms.TextInput)
   email = forms.CharField(widget=forms.TextInput())
-  first_name = forms.CharField(widget=forms.TextInput, required=False)
-  last_name = forms.CharField(widget=forms.TextInput, required=False)
-  direction = forms.CharField(widget=forms.TextInput, required=False)
-  country = forms.CharField(widget=forms.TextInput, required=False)
-  telephone = forms.CharField(widget=forms.TextInput, required=False)
-  avatar = forms.ImageField(widget=forms.FileInput, required=False)
+  first_name = forms.CharField(widget=forms.TextInput)
+  last_name = forms.CharField(widget=forms.TextInput)
+  direction = forms.CharField(widget=forms.TextInput)
+  country = forms.CharField(widget=forms.TextInput)
+  telephone = forms.CharField(widget=forms.TextInput)
+  avatar = forms.ImageField(widget=forms.FileInput)
 
   class Meta:
     model = User

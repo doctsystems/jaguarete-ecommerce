@@ -1,27 +1,106 @@
 {% extends 'bases/base.html' %}
 {% load static %}
 {% block title %}Jaguarete Kaa - Login{% endblock %}
-{% block section %}
-<section class="jumbotron text-center">
-  <div class="container">
-    <h1 class="jumbotron-heading">Bienvenido!</h1>
-    <p class="lead text-muted mb-0">Inicie sesión usando su nombre de usuario y contraseña</p>
-  </div>
-</section>
-{% endblock %}
 {% block content %}
-{% if form.errors %}
-<p class="text-danger text-center">Usuario y/o Contraseña incorrectos, verifique e intente nuevamente.</p>
-{% endif %}
-<div class="container">
+<main class="main-content">
+  <div class="breadcrumb-area breadcrumb-height" data-bg-image="assets/images/breadcrumb/bg/1-1-1919x388.jpg">
+    <div class="container h-100">
+      <div class="row h-100">
+        <div class="col-lg-12">
+          <div class="breadcrumb-item">
+            <h2 class="breadcrumb-heading">Login</h2>
+            <ul>
+              <li>
+                <a href="{% url 'store:home' %}">Home</a>
+              </li>
+              <li>Login</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="login-register-area section-space-y-axis-100">
+    <div class="container">
+      {% if form.errors %}
+      <p class="text-danger text-center">Usuario y/o Contraseña incorrectos, verifique e intente nuevamente.</p>
+      {% endif %}
+      <div class="row d-flex justify-content-center">
+        <div class="col-lg-6">
+          <form method="post" action="" class="">
+            {% csrf_token %}
+            <div class="login-form">
+              <div class="row">
+                <div class="col-lg-12">
+                  <label>Username*</label>
+                  <input name="username" id="id_username" autofocus autocomplete="off" required type="text" placeholder="Nombre de usuario">
+                </div>
+                <div class="col-lg-12">
+                  <label>Password</label>
+                  <input name="password" autocomplete="off" required id="id_password" type="password" placeholder="Password">
+                </div>
+                <div class="col-md-8">
+                  <div class="check-box">
+                    <input type="checkbox" id="remember_me">
+                    <label for="remember_me">Recordarme</label>
+                  </div>
+                </div>
+                <div class="col-md-4 pt-1 mt-md-0">
+                  <div class="forgotton-password_info">
+                    <a href="#"> Olvido su contraseña?</a>
+                  </div>
+                </div>
+                <div class="col-lg-12 pt-5">
+                  <button type="submit" class="btn btn-custom-size lg-size btn-pronia-primary">Login</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- <div class="col-lg-6 pt-5 pt-lg-0">
+          <form action="#">
+            <div class="login-form">
+              <h4 class="login-title">Register</h4>
+              <div class="row">
+                <div class="col-md-6 col-12">
+                  <label>First Name</label>
+                  <input type="text" placeholder="First Name">
+                </div>
+                <div class="col-md-6 col-12">
+                  <label>Last Name</label>
+                  <input type="text" placeholder="Last Name">
+                </div>
+                <div class="col-md-12">
+                  <label>Email Address*</label>
+                  <input type="email" placeholder="Email Address">
+                </div>
+                <div class="col-md-6">
+                  <label>Password</label>
+                  <input type="password" placeholder="Password">
+                </div>
+                <div class="col-md-6">
+                  <label>Confirm Password</label>
+                  <input type="password" placeholder="Confirm Password">
+                </div>
+                <div class="col-12">
+                  <button class="btn btn-custom-size lg-size btn-pronia-primary">Register</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</main>
+<!-- <div class="container">
   <div class="row rounded align-items-center mb-5">
     <div class="col-12 col-lg-6 m-auto">
       <div class="shadow-sm bg-white rounded">
         <div class="p-3 p-md-3">
           {% if next %}
           {% if user.is_authenticated %}
-          <p class="text-danger text-center">Tu cuenta no tiene acceso a esta página. Para proceder,
-            por favor inicie sesión con una cuenta que tenga acceso.</p>
+          <p class="text-danger text-center">Tu cuenta no tiene acceso a esta página. Para proceder, por favor inicie sesión con una cuenta que tenga acceso.</p>
           {% else %}
           <p class="text-danger text-center">Inicie sesión para ver esta página.</p>
           {% endif %}
@@ -56,5 +135,5 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 {% endblock content %}
