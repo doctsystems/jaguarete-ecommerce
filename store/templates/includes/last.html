@@ -1,39 +1,72 @@
-<div class="container mt-3 mb-5">
-	<div class="row">
-		<div class="col-sm">
-			<div class="card">
-				<div class="card-header bg-primary text-white text-uppercase">
-					<i class="fa fa-star"></i> Nuevos productos
-				</div>
-				<div class="card-body">
-					<div class="row">
-						<div class="table-responsive">
-							<table class="table table-hover">
-								<tbody>
-									{% for p in productos|slice:"3:" %}
-									<tr>
-										<td width="65">
-											<img src="{{p.imagen.url}}" class="img-xs border">
-										</td>
-										<td>
-											<p class="title mb-0"><b>{{p.nombre}}</b></p>
-											<var class="price text-muted">{{p.precio}} $us.</var>
-										</td>
-										<td><b>{{p.categoria}}</b><br>{{p.descripcion|safe|truncatechars:"50"}} </td>
-										<td width="100"> 
-											<a href="{{p.get_absolute_url}}" class="btn btn-info" width="50">Ver detalle</a>
-										</td>
-										<!-- <td width="100">
-											<a href="#" class="btn btn-success" width="50">Add carrito</a>
-										</td> -->
-									</tr>
-									{% endfor %}
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+{% load static %}
+<div class="product-area section-space-top-100">
+  <div class="container">
+    <div class="row">
+      <div class="section-title-wrap without-tab">
+        <h2 class="section-title">Nuevos Productos</h2>
+        <p class="section-desc">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
+<main class="main-content">
+  <div class="shop-area">
+    <div class="container">
+      <div class="row">
+        {% for p in productos|slice:"3:" %}
+        <div class="col-lg-12">
+          <div class="tab-content mb-5">
+            <div class="tab-pane fade show active" id="list-view" role="tabpanel" aria-labelledby="list-view-tab">
+              <div class="product-list-view row g-y-30">
+                <div class="col-12">
+                  <div class="product-item">
+                    <div class="product-img">
+                      <img class="primary-img" src="{{p.imagen.url}}" alt="" width="270px" height="300">
+                    </div>
+                    <div class="product-content">
+                      <a class="product-name" href="{{p.get_absolute_url}}">{{p.nombre}}</a>
+                      <div class="price-box pb-1">
+                        <span class="new-price">${{p.precio}}</span>
+                      </div>
+                      <div class="rating-box">
+                        <ul>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                        </ul>
+                      </div>
+                      <p class="short-desc mb-0">{{p.descripcion|safe}}</p>
+                      <div class="product-add-action">
+                        <ul>
+                          <li>
+                            <a href="#" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
+                              <i class="pe-7s-like"></i>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
+                              <i class="pe-7s-look"></i>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
+                              <i class="pe-7s-cart"></i>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</main>

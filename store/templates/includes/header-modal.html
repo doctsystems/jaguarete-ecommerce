@@ -1,0 +1,22 @@
+{% load static %}
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModal" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content modal-bg-dark">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" data-tippy="Close" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-search">
+          <span class="searchbox-info">Presione Enter para buscar o ESC para cerrar</span>
+          <form method='GET' action='/buscar/' class="hm-searchbox">
+            <input id="f" name="f" type="text" value="Buscar" onblur="if(this.value==''){this.value='Buscar'}" onfocus="if(this.value=='Buscar'){this.value=''}" autocomplete="off">
+            <button class="search-btn" type="submit" aria-label="searchbtn">
+              <i class="pe-7s-search"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+{% load static %}
+<div class="mobile-menu_wrapper" id="mobileMenu">
+  <div class="offcanvas-body">
+    <div class="inner-body">
+      <div class="offcanvas-top">
+        <a href="#" class="button-close"><i class="pe-7s-close"></i></a>
+      </div>
+      <div class="offcanvas-user-info">
+        <ul class="dropdown-wrap">
+          <li class="dropdown">
+            <button class="btn btn-link dropdown-toggle ht-btn p-0" type="button" id="settingButton" data-bs-toggle="dropdown" aria-label="setting" aria-expanded="false">
+              <i class="pe-7s-users"></i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="settingButton">
+              {% if user.is_authenticated %}
+              <li>
+                <a class="dropdown-item" href="#">Mi cuenta</a>
+              </li>
+              {% if perms.producto.add_producto %}
+              <li>
+                <a class="dropdown-item" href="{% url 'producto:nuevo'%}">Nuevo Producto</a>
+              </li>
+              {% endif %}
+              <li>
+                <a class="dropdown-item" href="{% url 'logout'%}">Logout</a>
+              </li>
+              {% else %}
+              <li>
+                <a class="dropdown-item" href="{% url 'login'%}">Login</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'users:register'%}">Registrarse</a>
+              </li>
+              {% endif %}
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="offcanvas-menu_area">
+        <nav class="offcanvas-navigation">
+          <ul class="mobile-menu">
+            <li><a href="{% url 'store:home' %}"><span class="mm-text">Home</span></a></li>
+            <li><a href="#"><span class="mm-text">Categorias</span></a></li>
+            <li><a href="{% url 'store:about'%}"><span class="mm-text">Acerca de</span></a></li>
+            <li><a href="mailto:d.cruz@outlook.com"><span class="mm-text">Contact</span></a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="searchbox">
+        <form method='GET' action='/buscar/'>
+          <input id="f" name="f" class="input-field" type="text" placeholder="Buscar" autocomplete="off">
+          <button class="searchbox-btn" type="submit">
+            <i class="fa fa-search"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -12,7 +12,7 @@ from .forms import ProductoForm
 
 class ProductoListView(ListView):
   categoria = None
-  paginate_by = 3
+  paginate_by = 6
 
   def get_queryset(self):
     queryset = Producto.objects.filter(is_disponible=True)

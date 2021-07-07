@@ -5,10 +5,12 @@ from django.shortcuts import render, redirect
 from django.views import generic
 from django.views.decorators.csrf import csrf_exempt
 from producto.models import Categoria, Producto
+from cart.forms import CartAddProductoForm
 
 
 class Home(generic.TemplateView):
   template_name = 'store/home.html'
+  extra_context = {"form": CartAddProductoForm()}
 
 
 class About(generic.TemplateView):

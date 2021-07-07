@@ -1,37 +1,41 @@
 {% extends 'bases/base.html' %}
 {% load static %}
 {% block title %}Jaguarete Kaa - About{% endblock %}
-{% block section %}
-<section class="jumbotron text-center">
-	<div class="container">
-		<h1 class="jumbotron-heading">Acerca de</h1>
-		<p class="lead text-muted mb-0">
-			At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-			praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias
-			excepturi sint occaecati cupiditate non provident.</p>
-	</div>
-</section>
-{% endblock %}
 {% block content %}
-<div class="row">
-	<div class="col-lg-6 float-left" style="text-align: justify;">
-		<h2>Welcome</h2>
-		<h5 class="my-sm-3 my-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-			do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h5>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	</div>
-	<div class="col-lg-6 welcome-right-top mt-lg-0 mt-sm-5 mt-4 mb-5">
-		<img src="https://dummyimage.com/600x400/cfcfcf/ffffff.png" class="img-fluid" alt=" ">
-	</div>
+<main class="main-content">
+<div class="breadcrumb-area breadcrumb-height" data-bg-image="assets/images/breadcrumb/bg/1-1-1919x388.jpg">
+  <div class="container h-100">
+    <div class="row h-100">
+      <div class="col-lg-12">
+        <div class="breadcrumb-item">
+          <h1 class="breadcrumb-heading">Quienes Somos</h1>
+          <ul>
+            <li>
+              <a href="{% url 'store:home' %}">Home</a>
+            </li>
+            <li>Acerca de</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+<div class="about-area section-space-top-95">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="about-content">
+          <h2 class="about-title">Nuestra <span>Historia</span></h2>
+          <p class="about-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrudexercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolorin reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteursint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id estlaborum. Sed ut perspiciatis</p>
+          <div class="about-signature">
+            <img src="{% static 'store/images/2.png' %}" alt="Signature">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+{% include 'includes/shipping.html' %}
+
 {% endblock %}

@@ -1,0 +1,61 @@
+{% load static %}
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="/">Jaguarete Kaa</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
+      <ul class="nav navbar-nav m-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'store:home'%}">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Categorias
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            {% for cat in categories %}
+            <a class="dropdown-item" href="{{ cat.get_absolute_url }}">{{cat}}</a>
+            {% endfor %}
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'store:about'%}">Acerca de</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="mailto:info@example.com">Contacto</a>
+        </li>
+        {% if perms.producto.add_producto %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'producto:nuevo'%}">Nuevo Producto</a>
+        </li>
+        {% endif %}
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout'%}">Logout</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'users:register'%}">Registrarse</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'login'%}">Login</a>
+        </li>
+        {% endif %}
+      </ul>
+      <form method='GET' action='/buscar/' class="form-inline my-2 my-lg-0">
+        <div class="input-group input-group-sm">
+          <input id="f" name="f" type="search" class="form-control" placeholder="Buscar">
+          <div class="input-group-append">
+            <a id="buscar" class="nav-link btn btn-secondary btn-number" href="/productos/buscar/"><i class="fa fa-search"></i></a>
+          </div>
+        </div>
+        <a class="{% if not perms.users.can_view_cart %}disabled{% endif %} btn btn-success btn-sm ml-3" href="{% url 'cart:detalle'%}">
+          <i class="fa fa-shopping-cart"></i> Carrito
+          <span class="badge badge-light" id="">{{request.session.cart|length}}</span>
+        </a>
+      </form>
+    </div>
+  </div>
+</nav>

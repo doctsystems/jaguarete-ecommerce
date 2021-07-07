@@ -14,6 +14,7 @@ class OrderCreateView(CreateView):
   def form_valid(self, form):
     cart = Cart(self.request)
     if cart:
+      print('entro....')
       order = form.save()
       print('Orden guardada...')
       print(order)

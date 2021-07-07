@@ -1,149 +1,212 @@
 {% extends 'bases/base.html' %}
 {% load static %}
 {% load widget_tweaks %}
-{% block title %}Jaguarete Kaa - {{producto}}{% endblock %}
+{% block title %}Jaguarete Kaa - {{producto|title}}{% endblock %}
 {% block content %}
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{% url 'store:home'%}">Home</a></li>
-          <li class="breadcrumb-item"><a href="{% url 'producto:lista'%}">Productos</a></li>
-          <li class="breadcrumb-item active" aria-current="page">{{producto}}</li>
-        </ol>
-      </nav>
-    </div>
-  </div>
-</div>
-<div class="container">
-  <div class="row">
-    <!-- Image -->
-    <div class="col-12 col-lg-6">
-      <div class="card bg-light mb-3">
-        <div class="card-body">
-          <a href="" data-toggle="modal" data-target="#productModal">
-            <img class="img-fluid" src="{{producto.imagen.url}}" />
-          </a>
+<form method="post" action="{% url 'cart:add' producto.id %}">
+  {% csrf_token %}
+  <main class="main-content">
+    <div class="breadcrumb-area breadcrumb-height" data-bg-image="assets/images/breadcrumb/bg/1-1-1919x388.jpg">
+      <div class="container h-100">
+        <div class="row h-100">
+          <div class="col-lg-12">
+            <div class="breadcrumb-item">
+              <h2 class="breadcrumb-heading">Detalle de producto</h2>
+              <ul>
+                <li>
+                  <a href="{% url 'store:home' %}">Home</a>
+                </li>
+                <li><a href="{% url 'producto:lista' %}">Productos</a></li>
+                <li>{{producto|title}}</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <!-- Add to cart -->
-    <div class="col-12 col-lg-6 add_to_cart_block">
-      <div class="card bg-light mb-3">
-        <div class="card-body">
-          <p class="price">{{producto.precio}} $us.</p>
-          <form method="post" action="{% url 'cart:add' producto.id %}">
-            {% csrf_token %}
-            <div class="form-group">
-              {{ form.cantidad.label_tag }}
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus" data-field="">
-                    <i class="fa fa-minus"></i>
-                  </button>
+    <div id="product-slider" class="single-product-area section-space-top-100">
+      <div class="container">
+        <div class="row">
+          {% include 'producto/producto-slider.html' %}
+          <div class="col-lg-6 pt-5 pt-lg-0">
+            <div class="single-product-content">
+              <h2 class="title">{{producto.nombre}}</h2>
+              <div class="price-box">
+                <span class="new-price">${{producto.precio}}</span>
+              </div>
+              <div class="rating-box-wrap pb-4">
+                <div class="rating-box">
+                  <ul>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                  </ul>
                 </div>
-                {% render_field form.cantidad class+="form-control" %}{{ form.override }}
-                <div class="input-group-append">
-                  <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="">
-                    <i class="fa fa-plus"></i>
+              </div>
+              <p class="short-desc">{{producto.descripcion|safe}}</p>
+              <ul class="quantity-with-btn">
+                <li class="quantity">
+                  <div class="cart-plus-minus">
+                    <input id="id_cantidad" name="cantidad" class="cart-plus-minus-box" value="1" type="text">
+                  </div>
+                </li>
+                <li class="add-to-cart">
+                  <button type="submit" class="btn btn-custom-size lg-size btn-pronia-primary">Add carrito
                   </button>
+                </li>
+                {% if perms.producto.change_producto %}
+                <li class="wishlist-btn-wrap">
+                  <a class="custom-circle-btn" href="{% url 'producto:actualizar' producto.slug %}">
+                    <i class="pe-7s-pen"></i>
+                  </a>
+                </li>
+                {% endif %}
+                {% if perms.producto.delete_producto %}
+                <li class="compare-btn-wrap">
+                  <a class="custom-circle-btn" href="{% url 'producto:eliminar' producto.slug %}">
+                    <i class="pe-7s-trash"></i>
+                  </a>
+                </li>
+                {% endif %}
+              </ul>
+              <ul class="service-item-wrap">
+                <li class="service-item">
+                  <div class="service-img">
+                    <img src="{% static 'store/images/car.png' %}" alt="Shipping Icon">
+                  </div>
+                  <div class="service-content">
+                    <span class="title">Envío <br> gratuito</span>
+                  </div>
+                </li>
+                <li class="service-item">
+                  <div class="service-img">
+                    <img src="{% static 'store/images/card.png' %}" alt="Shipping Icon">
+                  </div>
+                  <div class="service-content">
+                    <span class="title">Pago <br> seguro</span>
+                  </div>
+                </li>
+                <li class="service-item">
+                  <div class="service-img">
+                    <img src="{% static 'store/images/service.png' %}" alt="Shipping Icon">
+                  </div>
+                  <div class="service-content">
+                    <span class="title">Soporte <br> 24/7</span>
+                  </div>
+                </li>
+              </ul>
+              <div class="product-category">
+                <span class="title">Categorias :</span>
+                <ul>
+                  <li>
+                    <a href="/productos/categoria/{{producto.categoria|lower}}">{{producto.categoria|lower}}</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="product-category product-tags">
+                <span class="title">Tags :</span>
+                <ul>
+                  <li>
+                    <a href="/buscar/?f={{producto.categoria|lower}}/">{{producto.categoria|lower}}</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="product-category social-link align-items-center pb-0">
+                <span class="title pe-3">Compartir:</span>
+                <ul>
+                  <li>
+                    <a href="#" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
+                      <i class="fa fa-facebook"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
+                      <i class="fa fa-instagram"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
+                      <i class="fa fa-twitter"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% include 'producto/producto-tab-area.html' %}
+  </main>
+</form>
+<!-- <div class="mad-content no-pd">
+    <div class="container">
+      <div class="mad-section">
+        <div class="content-element-10">
+          <div class="mad-product mad-product-single">
+            <div class="row hr-size-2 vr-size-2 sticky-bar">
+              <div class="col-xl-6">
+                <div class="image-preview-container">
+                  <div class="image-preview">
+                    <a href="#">
+                      <img id="zoom-image" src="{{producto.imagen.url}}" alt="">
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-6">
+                <h3 class="mad-product-title">{{producto.nombre}}</h3>
+                <div class="mad-product-info">
+                  <div class="mad-info-item">
+                    <div class="mad-col">
+                      <div class="mad-text-small content-element">Cateogoría:
+                        <a href="/productos/categoria/{{producto.categoria}}" class="mad-link">{{producto.categoria|lower}}</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mad-info-item">
+                    <div class="mad-product-price">${{producto.precio}}</div>
+                  </div>
+                  <div class="mad-info-item">
+                    <p class="mad-text-small text-justify">{{producto.descripcion|linebreaks}}</p>
+                  </div>
+                  <div class="mad-info-item">
+                    <div>
+                      <p class="mad-text-small content-element">Cantidad</p>
+                      <div class="btn-set">
+                        <div class="quantity size-2">
+                          <input id="id_cantidad" name="cantidad" type="text" value="1" readonly="">
+                          <button type="button" class="qty-plus"><i class="material-icons">add</i></button>
+                          <button type="button" class="qty-minus"><i class="material-icons">remove</i></button>
+                        </div>
+                        <button type="submit" class="btn btn-big btn-style-3" {% if not perms.users.can_view_cart %}disabled{% endif %}>
+                          <i class="material-icons-outlined">shopping_bag</i><span>Añadir al Carrito</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mad-info-item">
+                    <ul class="product-meta">
+                      <li class="tags">
+                        <span>Compartir:</span>
+                        <div class="mad-social-icons type-2">
+                          <ul>
+                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="#" class="color-2"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="#" class="color-4"><i class="fab fa-instagram"></i></a></li>
+                          </ul>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
-            <button type="submit" class="btn btn-success btn-lg btn-block text-uppercase"
-              {% if not perms.users.can_view_cart %}disabled{% endif %}>
-              <i class="fa fa-shopping-cart"></i> Add carrito
-            </button>
-            <a href="{% url 'producto:actualizar' producto.slug %}" class="{% if not perms.producto.change_producto %}disabled{% endif %} btn btn-info btn-block"><i class="fa fa-edit"></i> Editar</a>
-            <a href="{% url 'producto:eliminar' producto.slug %}" class="{% if not perms.producto.delete_producto %}disabled{% endif %} btn btn-danger btn-block"><i class="fa fa-trash"></i> Eliminar</a>
-          </form>
-          <div class="product_rassurance">
-            <ul class="list-inline">
-              <li class="list-inline-item"><i class="fa fa-truck fa-2x"></i><br />Envio gratuito</li>
-              <li class="list-inline-item"><i class="fa fa-credit-card fa-2x"></i><br />Pago seguro</li>
-              <li class="list-inline-item"><i class="fa fa-phone fa-2x"></i><br />+12 2345 6789</li>
-            </ul>
-          </div>
-          <div class="reviews_product p-3 mb-2 ">
-            3 comentarios
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            (4/5)
-            <a class="pull-right" href="#reviews">Ver comentarios</a>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <!-- Description -->
-    <div class="col-12">
-      <div class="card border-light mb-3">
-        <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-align-justify"></i> Descripcion</div>
-        <div class="card-body">
-          <p class="card-text">{{producto.descripcion|safe}}</p>
-        </div>
-      </div>
-    </div>
-    <!-- Comentarios -->
-    <div class="col-12" id="reviews">
-      <div class="card border-light mb-3">
-        <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-comment"></i> Comentarios</div>
-        <div class="card-body">
-          <div class="review">
-            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-            <meta itemprop="datePublished" content="01-01-2016">25/05/2021
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            by Paul Smith
-            <p class="blockquote">
-              <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-            </p>
-            <hr>
-          </div>
-          <div class="review">
-            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-            <meta itemprop="datePublished" content="01-01-2016">15/06/2021
-            <span class="fa fa-star" aria-hidden="true"></span>
-            <span class="fa fa-star" aria-hidden="true"></span>
-            <span class="fa fa-star" aria-hidden="true"></span>
-            <span class="fa fa-star" aria-hidden="true"></span>
-            <span class="fa fa-star" aria-hidden="true"></span>
-            by Paul Smith
-            <p class="blockquote">
-              <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-            </p>
-            <hr>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Modal image -->
-<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="productModalLabel">{{producto}}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <img class="img-fluid" src="{{producto.imagen.url}}" />
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-      </div>
-    </div>
-  </div>
-</div>
+  </div> -->
 {% endblock %}

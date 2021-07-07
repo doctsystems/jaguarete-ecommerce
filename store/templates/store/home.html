@@ -1,39 +1,74 @@
 {% extends 'bases/base.html' %}
 {% load static %}
+{% load widget_tweaks %}
 {% block title %}Jaguarete Kaa - Ecommerce{% endblock %}
 {% block content %}
-<div class="row">
-  <div class="col-sm">
-    <div class="card card-home">
-      <div class="card-body">
-        <div class="row">
-          {% for p in productos|slice:":3" %}
-          <div class="col-sm">
-            <div class="card">
-              <img class="card-img-top" src="{{p.imagen.url}}" alt="{{p.nombre}}">
-              <div class="card-body">
-                <h4 class="card-title text-primary">{{p.nombre}}</h4>
-                <p class="card-text">{{p.descripcion|safe|truncatechars:"100"}}</p>
-                <div class="row">
-                  <div class="col">
-                    <p class="btn btn-danger btn-block disabled">{{p.precio}} $us.</p>
-                  </div>
-                  <div class="col">
-                    <a href="{{p.get_absolute_url}}" class="btn btn-info btn-block">Ver detalle</a>
+<main class="main-content">
+  <div class="shop-area mt-5">
+    <div class="container">
+      <div class="row mb-3">
+        <div class="col-lg-12">
+          <div class="tab-content">
+            <div class="tab-pane fade show active" id="grid-view" role="tabpanel" aria-labelledby="grid-view-tab">
+              <div class="product-grid-view row g-y-20">
+                {% for p in productos|slice:":3" %}
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                  <div class="product-item">
+                    <div class="product-img">
+                      <img class="primary-img" src="{{p.imagen.url}}" alt="" width="270px" height="300">
+                      <div class="product-add-action">
+                        <ul>
+                          <li>
+                            <a href="#" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
+                              <i class="pe-7s-like"></i>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
+                              <i class="pe-7s-look"></i>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
+                              <i class="pe-7s-cart"></i>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="product-content">
+                      <a class="product-name" href="{{p.get_absolute_url}}">{{p.nombre}}</a>
+                      <div class="rating-box">
+                        <ul>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                        </ul>
+                      </div>
+                      <div class="short-desc">
+                        <span class="">{{p.descripcion|safe|truncatechars:"100"}}</span>
+                      </div>
+                      <div class="price-box pb-1 pt-3">
+                        <span class="new-price">${{p.precio}}</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
+                {% endfor %}
               </div>
             </div>
           </div>
-          {% endfor %}
         </div>
       </div>
     </div>
   </div>
-</div>
-<!-- Last products block -->
-{% include 'includes/last.html' %}
+</main>
 {% endblock %}
-{% block extra_js %}
-
+{% block shipping %}
+<!-- {% include 'includes/shipping.html' %} -->
+{% endblock %}
+{% block new_products %}
+{% include 'includes/last.html' %}
 {% endblock %}

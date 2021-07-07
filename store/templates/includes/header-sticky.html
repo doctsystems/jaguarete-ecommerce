@@ -1,0 +1,90 @@
+{% load static %}
+<div class="header-sticky py-4 py-lg-0">
+  <div class="container">
+    <div class="header-nav position-relative">
+      <div class="row align-items-center">
+        <div class="col-lg-3 col-6">
+          <a href="{% url 'store:home'%}" class="header-logo">
+            <img src="{% static 'store/images/logo.png' %}" alt="Logo">
+          </a>
+        </div>
+        <div class="col-lg-6 d-none d-lg-block">
+          <div class="main-menu">
+            <nav class="main-nav">
+              <ul>
+                <li>
+                  <a href="{% url 'store:home'%}">Home</a>
+                </li>
+                <li class="drop-holder">
+                  <a href="#">Categorias</a>
+                  <ul class="drop-menu">
+                    {% for cat in categories %}
+                    <li>
+                      <a href="{{cat.get_absolute_url}}">{{cat|title}}</a>
+                    </li>
+                    {% endfor %}
+                  </ul>
+                </li>
+                <li>
+                  <a href="{% url 'store:about'%}">Acerca de</a>
+                </li>
+                <li>
+                  <a href="mailto:d.cruz@outlook.com">Contacto</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <div class="col-lg-3 col-6">
+          <div class="header-right">
+            <ul>
+              <li>
+                <a href="#exampleModal" class="search-btn bt" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  <i class="pe-7s-search"></i>
+                </a>
+              </li>
+              <li class="dropdown d-none d-lg-block">
+                <button class="btn btn-link dropdown-toggle ht-btn p-0" type="button" id="settingButton" data-bs-toggle="dropdown" aria-label="setting" aria-expanded="false">
+                  <i class="pe-7s-users"></i>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="settingButton">
+                  {% if user.is_authenticated %}
+                  <li>
+                    <a class="dropdown-item" href="#">Mi cuenta</a>
+                  </li>
+                  {% if perms.producto.add_producto %}
+                  <li>
+                    <a class="dropdown-item" href="{% url 'producto:nuevo'%}">Nuevo Producto</a>
+                  </li>
+                  {% endif %}
+                  <li>
+                    <a class="dropdown-item" href="{% url 'logout'%}">Logout</a>
+                  </li>
+                  {% else %}
+                  <li>
+                    <a class="dropdown-item" href="{% url 'login'%}">Login</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="{% url 'users:register'%}">Registrarse</a>
+                  </li>
+                  {% endif %}
+                </ul>
+              </li>
+              <li class="minicart-wrap me-3 me-lg-0">
+                <a href="{% url 'cart:detalle'%}" class="minicart-btn">
+                  <i class="pe-7s-shopbag"></i>
+                  <span class="quantity">{{request.session.cart|length}}</span>
+                </a>
+              </li>
+              <li class="mobile-menu_wrap d-block d-lg-none">
+                <a href="#mobileMenu" class="mobile-menu_btn toolbar-btn pl-0">
+                  <i class="pe-7s-menu"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

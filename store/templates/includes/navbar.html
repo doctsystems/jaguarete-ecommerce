@@ -1,61 +1,104 @@
 {% load static %}
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-  <div class="container">
-    <a class="navbar-brand" href="/">Jaguarete Kaa</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
-      <ul class="nav navbar-nav m-auto">
-        <li class="nav-item">
-          <a class="nav-link active" href="{% url 'store:home'%}">Home</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Categorias
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            {% for cat in categories %}
-            <a class="dropdown-item" href="{{ cat.get_absolute_url }}">{{cat}}</a>
-            {% endfor %}
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'store:about'%}">Acerca de</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="mailto:info@example.com">Contacto</a>
-        </li>
-        {% if perms.producto.add_producto %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'producto:nuevo'%}">Nuevo Producto</a>
-        </li>
-        {% endif %}
-        {% if user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'logout'%}">Logout</a>
-        </li>
-        {% else %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'users:register'%}">Registrarse</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'login'%}">Login</a>
-        </li>
-        {% endif %}
-      </ul>
-      <form method='GET' action='/buscar/' class="form-inline my-2 my-lg-0">
-        <div class="input-group input-group-sm">
-          <input id="f" name="f" type="search" class="form-control" placeholder="Buscar">
-          <div class="input-group-append">
-            <a id="buscar" class="nav-link btn btn-secondary btn-number" href="/productos/buscar/"><i class="fa fa-search"></i></a>
+<header class="main-header-area">
+  <div class="header-middle py-30">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-12">
+          <div class="header-middle-wrap position-relative">
+            <a href="{% url 'store:home'%}" class="header-logo">
+              <img src="{% static 'store/images/logo.png' %}" alt="Logo">
+            </a>
+            <div class="searchbox d-none d-lg-block">
+              <form method='GET' action='/buscar/'>
+                <input id="f" name="f" class="input-field" type="text" placeholder="Buscar" autocomplete="off">
+                <button class="searchbox-btn" type="submit">
+                  <i class="fa fa-search"></i>
+                </button>
+              </form>
+            </div>
+            <div class="header-right">
+              <ul>
+                <li class="dropdown d-none d-lg-block">
+                  <button class="btn btn-link dropdown-toggle ht-btn p-0" type="button" id="settingButton" data-bs-toggle="dropdown" aria-label="setting" aria-expanded="false">
+                    <i class="pe-7s-users"></i>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="settingButton">
+                    {% if user.is_authenticated %}
+                    <li>
+                      <a class="dropdown-item" href="#">Mi cuenta</a>
+                    </li>
+                    {% if perms.producto.add_producto %}
+                    <li>
+                      <a class="dropdown-item" href="{% url 'producto:nuevo'%}">Nuevo Producto</a>
+                    </li>
+                    {% endif %}
+                    <li>
+                      <a class="dropdown-item" href="{% url 'logout'%}">Logout</a>
+                    </li>
+                    {% else %}
+                    <li>
+                      <a class="dropdown-item" href="{% url 'login'%}">Login</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="{% url 'users:register'%}">Registrarse</a>
+                    </li>
+                    {% endif %}
+                  </ul>
+                </li>
+                <li class="minicart-wrap me-3 me-lg-0">
+                  <a href="{% url 'cart:detalle'%}" class="minicart-btn">
+                    <i class="pe-7s-cart"></i>
+                    <span class="quantity">{{request.session.cart|length}}</span>
+                  </a>
+                </li>
+                <li class="mobile-menu_wrap d-block d-lg-none">
+                  <a href="#mobileMenu" class="mobile-menu_btn toolbar-btn pl-0">
+                    <i class="fa fa-bars"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-        <a class="{% if not perms.users.can_view_cart %}disabled{% endif %} btn btn-success btn-sm ml-3" href="{% url 'cart:detalle'%}">
-          <i class="fa fa-shopping-cart"></i> Carrito
-          <span class="badge badge-light" id="">{{request.session.cart|length}}</span>
-        </a>
-      </form>
+      </div>
     </div>
   </div>
-</nav>
+  <div class="header-bottom d-none d-lg-block">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="main-menu position-relative">
+            <nav class="main-nav">
+              <ul>
+                <li>
+                  <a href="{% url 'store:home'%}">Home</a>
+                </li>
+                <li class="drop-holder">
+                  <a href="#">Categorias</a>
+                  <ul class="drop-menu">
+                    {% for cat in categories %}
+                    <li>
+                      <a href="{{cat.get_absolute_url}}">{{cat|title}}</a>
+                    </li>
+                    {% endfor %}
+                  </ul>
+                </li>
+                <li>
+                  <a href="{% url 'store:about'%}">Acerca de</a>
+                </li>
+                <li>
+                  <a href="mailto:d.cruz@outlook.com">Contacto</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% include 'includes/header-sticky.html' %}
+  {% include 'includes/header-mobile.html' %}
+  {% include 'includes/header-modal.html' %}
+  {% include 'includes/header-cart.html' %}
+  <div class="global-overlay"></div>
+</header>

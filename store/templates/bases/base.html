@@ -3,48 +3,103 @@
 <html lang="es">
 
 <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>{% block title %}Title{% endblock %}</title>
-  <!-- Site meta -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Jaguarete Kass - Ecommerce</title>
+  <meta name="robots" content="index, follow" />
+  <meta name="description" content="Pronia plant store bootstrap 5 template is an awesome website template for any home plant shop.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="{% static 'store/images/favicon.png' %}" />
   <!-- CSS -->
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600" rel="stylesheet" type="text/css">
-  <link href="{% static 'store/css/main.css' %}" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="{% static 'store/css/bootstrap.min.css' %}" />
+  <link rel="stylesheet" href="{% static 'store/css/font-awesome.min.css' %}" />
+  <link rel="stylesheet" href="{% static 'store/css/Pe-icon-7-stroke.css' %}" />
+  <link rel="stylesheet" href="{% static 'store/css/animate.min.css' %}">
+  <link rel="stylesheet" href="{% static 'store/css/swiper-bundle.min.css' %}">
+  <link rel="stylesheet" href="{% static 'store/css/nice-select.css' %}">
+  <link rel="stylesheet" href="{% static 'store/css/magnific-popup.min.css' %}" />
+  <link rel="stylesheet" href="{% static 'store/css/ion.rangeSlider.min.css' %}" />
+  <!-- Style CSS -->
+  <link rel="stylesheet" href="{% static 'store/css/style.css' %}">
   <!-- Extra CSS block -->
   {% block extra_css %}{% endblock %}
 </head>
 
 <body>
-  <!-- Navbar block -->
-  {% block navbar %}
-  {% include 'includes/navbar.html' %}
-  {% endblock %}
-
-  {% block section %}
-  <section class="jumbotron text-center">
-    <div class="container">
-      <h1 class="jumbotron-heading">Jaguarete Kaa S.A.</h1>
-      <p class="lead text-muted mb-0">Añadiendo salud a tu vida de forma natural</p>
+  <div class="preloader-activate preloader-active open_tm_preloader">
+    <div class="preloader-area-wrap">
+      <div class="spinner d-flex justify-content-center align-items-center h-100">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
     </div>
-  </section>
-  {% endblock %}
-  <!-- Content block -->
-  <div class="container">
-    {% block content %}{% endblock content %}
   </div>
-  <!-- Footer block -->
-  {% block footer %}
-  {% include 'includes/footer.html' %}
-  {% endblock %}
-  <!-- JS block -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <div class="main-wrapper">
+    <!-- Begin Main Header Area -->
+    {% block navbar %}
+    {% include 'includes/navbar.html' %}
+    {% endblock %}
+    <!-- Main Header Area End Here -->
+
+    <!-- Begin Slider Area -->
+    {% block slider %}
+    {% endblock %}
+    <!-- Slider Area End Here -->
+
+    <!-- Begin Content Main Area -->
+    {% block content %}
+    {% endblock %}
+    <!-- Content Main Area End Here -->
+
+    <!-- Begin Shipping Area -->
+    {% block shipping %}
+    {% endblock %}
+    <!-- Shipping Area End Here -->
+
+    <!-- Begin NEW Product Area -->
+    {% block new_products %}
+    {% endblock %}
+    <!-- Product Area End Here -->
+
+    <!-- Begin Footer Area -->
+    {% block footer %}
+    {% include 'includes/footer.html' %}
+    {% endblock %}
+    <!-- Footer Area End Here -->
+
+    <!-- Begin Modal Area -->
+    {% block modal %}
+    {% endblock %}
+    <!-- Modal Area End Here -->
+
+    <!-- Begin Scroll To Top -->
+    <a class="scroll-to-top" href="">
+      <i class="fa fa-angle-double-up"></i>
+    </a>
+    <!-- Scroll To Top End Here -->
+
+  </div>
+  <!-- Global Vendor, plugins JS -->
+  <!-- JS Files
+    ============================================ -->
+  <script src="{% static 'store/js/vendor/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'store/js/vendor/jquery-3.6.0.min.js' %}"></script>
+  <script src="{% static 'store/js/vendor/jquery-migrate-3.3.2.min.js' %}"></script>
+  <script src="{% static 'store/js/vendor/jquery.waypoints.js' %}"></script>
+  <script src="{% static 'store/js/vendor/modernizr-3.11.2.min.js' %}"></script>
+  <script src="{% static 'store/js/plugins/wow.min.js' %}"></script>
+  <script src="{% static 'store/js/plugins/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'store/js/plugins/jquery.nice-select.js' %}"></script>
+  <script src="{% static 'store/js/plugins/parallax.min.js' %}"></script>
+  <script src="{% static 'store/js/plugins/jquery.magnific-popup.min.js' %}"></script>
+  <script src="{% static 'store/js/plugins/tippy.min.js' %}"></script>
+  <script src="{% static 'store/js/plugins/ion.rangeSlider.min.js' %}"></script>
+  <script src="{% static 'store/js/plugins/mailchimp-ajax.js' %}"></script>
+  <script src="{% static 'store/js/plugins/jquery.counterup.js' %}"></script>
+  <!--Main JS (Common Activation Codes)-->
   <script src="{% static 'store/js/main.js' %}"></script>
-  <!-- Extra JS block -->
   {% block extra_js %}{% endblock %}
   <script type="text/javascript">
   $("#buscar").on('click', function() {

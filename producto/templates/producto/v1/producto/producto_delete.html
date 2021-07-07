@@ -1,0 +1,27 @@
+{% extends 'bases/base.html' %}
+{% load static %}
+{% block title %}Jaguarete Kaa - Eliminar {{producto}}{% endblock %}
+{% block content %}
+<div class="employee-dash ">
+  <div class="container employee-dash-wrap">
+    <div class="row">
+      <div class="col-12 col-lg-10 col-xl-7 m-auto">
+        <form id="myform" action="" method="POST">
+          {% csrf_token %}
+          <div class="form shadow-sm bg-white rounded p-3 p-lg-4">
+            <div class="form-group row mt-3">
+              <h4 class="col-12 text-center">Esta seguro que desea eliminar el producto: "{{ producto }}"?</h4>
+            </div>
+            <div class="row">
+              <div class="col-12 text-center mt-2">
+                <a class="btn btn-secondary" type="button" href="{{ request.META.HTTP_REFERER }}">Cancelar</a>
+								<input type="submit" class="btn btn-danger" value="Eliminar Producto">
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

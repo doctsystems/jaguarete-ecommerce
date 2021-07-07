@@ -1,14 +1,110 @@
-<footer class="text-light">
-	<div class="container">
-		<div class="row">
-			<div class="col-6 copyright mt-3">
-				<span>&copy; 2021 Jaguarete Kaa, S.A. <a href="#">Politicas de privacidad</a></span>
-			</div>
-			<div class="col-6 copyright mt-3">
-				<p class="float-right text-muted">Created with <i class="fa fa-heart"></i> by
-					<a href="https://diegoosvaldo.me/" target="_blank"><i>diegoosvaldo85</i> </a>
-				</p>
-			</div>
-		</div>
-	</div>
-</footer>
+{% load static %}
+<div class="footer-area">
+  <div class="footer-top section-space-top-100 pb-60">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <div class="footer-widget-item">
+            <div class="footer-widget-logo">
+              <a href="{% url 'store:home' %}">
+                <img src="{% static 'store/images/logo.png' %}" alt="Logo">
+              </a>
+            </div>
+            <p class="footer-widget-desc">Lorem ipsum dolor sit amet, consec adipisl elit, sed do eiusmod tempor incidio ut labore et dolore magna.
+            </p>
+            <div class="social-link with-border">
+              <ul>
+                <li>
+                  <a href="#" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
+                    <i class="fa fa-facebook"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
+                    <i class="fa fa-twitter"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
+                    <i class="fa fa-instagram"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
+                    <i class="fa fa-youtube-play"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 mb-4">
+          <div class="footer-widget-item">
+            <h3 class="footer-widget-title">Nosotros</h3>
+            <ul class="footer-widget-list-item">
+              <li>
+                <a href="{% url 'store:home' %}">Home</a>
+              </li>
+              <li>
+                <a href="#">Como comprar</a>
+              </li>
+              <li>
+                <a href="#">Envios & Retornos</a>
+              </li>
+              <li>
+                <a href="#">Metodos de pago</a>
+              </li>
+              <li>
+                <a href="#">Politicas Privacidad</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-2 mb-4">
+          <div class="footer-widget-item">
+            <h3 class="footer-widget-title">Usuarios</h3>
+            <ul class="footer-widget-list-item">
+              <li>
+                <a href="#">Mi cuenta</a>
+              </li>
+              <li>
+                <a href="#">Mis compras</a>
+              </li>
+              <li>
+                <a href="#">FAQs</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <div class="footer-contact-info">
+            <h3 class="footer-widget-title">Soporte 24/7</h3>
+            <a class="number" href="tel://+59172900865">+ 591 72900865</a>
+            <div class="address">
+              <ul>
+                <li>Bermejo, Bolivia.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="payment-method">
+            <a href="#">
+              <img src="{% static 'store/images/payment.png' %}" alt="Payment Method">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="copyright">
+            <span class="copyright-text">© 2021 Jaguarete Kaa S.A. Made with <i class="fa fa-heart text-danger"></i> by
+              <a href="https://diegoosvaldo.me/" rel="noopener" target="_blank">diegoosvaldo85</a> </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -25,26 +25,34 @@ class OrderCreateForm(forms.ModelForm):
     self.helper.add_input(
       Submit(
         "submit",
-        "Finalizar compra",
+        "Realizar pedido",
         css_class="btn btn-success btn-lg btn-block",
       )
     )
     self.helper.layout = Layout(
       Fieldset(
-        "",
-        "nombre",
-        "email",
         Div(
-          Field("ciudad", wrapper_class="col"),
+          Field("nombre", css_class="form-control", wrapper_class="col"),
           css_class="row",
         ),
         Div(
-          Field("direccion", wrapper_class="col"),
+          Field("email", css_class="form-control", wrapper_class="col"),
           css_class="row",
         ),
         Div(
-          Field("numero", wrapper_class="col"),
-          Field("descripcion", wrapper_class="col"),
+          Field("ciudad", css_class="form-control", wrapper_class="col"),
+          css_class="row",
+        ),
+        Div(
+          Field("direccion", css_class="form-control", wrapper_class="col"),
+          css_class="row",
+        ),
+        Div(
+          Field("numero", css_class="form-control", wrapper_class="col"),
+          css_class="row",
+        ),
+        Div(
+          Field("descripcion", css_class="form-control", wrapper_class="col"),
           css_class="row",
         ),
         css_class="border-bottom mb-3",

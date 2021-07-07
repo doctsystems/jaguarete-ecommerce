@@ -1,0 +1,24 @@
+{% extends 'bases/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}Jaguarete Kaa - Checkout{% endblock title %}
+{% block content %}
+<div class="container my-3">
+  <h1 class="font-weight-bold">Checkout</h1>
+  {% if cart %}
+  <div class="row">
+    <div class="col-lg-6">
+      {% crispy form %}
+    </div>
+    <div class="col-lg-6 mt-5">
+      {% include "order/order_summary.html" with items=cart total_price=cart.get_precio_total %}
+    </div>
+  </div>
+  {% else %}
+  <p>Su carrito está vacio.</p>
+  {% endif %}
+</div>
+{% endblock content %}
+{% block extra_js %}
+<script src="{% static 'order/js/form.js' %}"></script>
+{% endblock %}

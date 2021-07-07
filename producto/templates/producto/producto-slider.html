@@ -1,0 +1,55 @@
+{% load static %}
+<div class="col-lg-6">
+  <div class="single-product-img">
+    <div class="swiper-container single-product-slider">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <a href="{{producto.imagen.url}}" class="single-img gallery-popup">
+            <img class="img-full" src="{{producto.imagen.url}}" alt="Product Image">
+          </a>
+        </div>
+        <div class="swiper-slide">
+          <a href="{{producto.imagen.url}}" class="single-img gallery-popup">
+            <img class="img-full" src="{{producto.imagen.url}}" alt="Product Image">
+          </a>
+        </div>
+        <div class="swiper-slide">
+          <a href="{{producto.imagen.url}}" class="single-img gallery-popup">
+            <img class="img-full" src="{{producto.imagen.url}}" alt="Product Image">
+          </a>
+        </div>
+        <div class="swiper-slide">
+          <a href="{{producto.imagen.url}}" class="single-img gallery-popup">
+            <img class="img-full" src="{{producto.imagen.url}}" alt="Product Image">
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="thumbs-arrow-holder">
+      <div class="swiper-container single-product-thumbs">
+        <div class="swiper-wrapper">
+          <a href="#product-slider" class="swiper-slide">
+            <img class="img-full" src="{{producto.imagen.url}}" alt="Product Thumnail">
+          </a>
+          <a href="#product-slider" class="swiper-slide">
+            <img class="img-full" src="{{producto.imagen.url}}" alt="Product Thumnail">
+          </a>
+          <a href="#product-slider" class="swiper-slide">
+            <img class="img-full" src="{{producto.imagen.url}}" alt="Product Thumnail">
+          </a>
+          <a href="#product-slider" class="swiper-slide">
+            <img class="img-full" src="{{producto.imagen.url}}" alt="Product Thumnail">
+          </a>
+        </div>
+        <div class=" thumbs-button-wrap d-none d-md-block">
+          <div class="thumbs-button-prev">
+            <i class="pe-7s-angle-left"></i>
+          </div>
+          <div class="thumbs-button-next">
+            <i class="pe-7s-angle-right"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
