@@ -125,7 +125,7 @@ _Herramientas y Tecnologias que se utilizaron para el desarrollo del proyecto_
 ---
 ## Contribuyendo 🖇️
 
-Por favor envie un correo a [dcruz](mailto:d.cruz@outlook.com) para detalles sobre el código y el proceso para enviar pull requests.
+Por favor envie un correo a [d.cruz@outlook.com](mailto:d.cruz@outlook.com) para detalles sobre el código y el proceso para enviar pull requests.
 
 ---
 ## Wiki 📖
@@ -142,7 +142,7 @@ _Por ahora solo existe un autor y/o desarrollador_
 ---
 ## Licencia 📄
 
-Este proyecto está desarrollado bajo la Licencia (MIT) - mira el archivo [LICENSE.md](LICENSE.md) para detalles
+Este proyecto está desarrollado bajo la Licencia (MIT) - mira el archivo [LICENSE](LICENSE) para más detalles.
 
 ---
 ## Expresiones de Gratitud 🎁
