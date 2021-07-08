@@ -1,8 +1,24 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.views import generic
 from .forms import *
+from order.models import Order
+
+User = get_user_model()
+
+class Dashboard(LoginRequiredMixin, generic.TemplateView):
+  template_name = 'users/dashboard.html'
+  extra_context = {"form": UserChangeForm()}
+  login_url = 'login'
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['ordenes'] = Order.objects.filter(user=self.request.user)
+    return context
 
 
 def Registro(request):

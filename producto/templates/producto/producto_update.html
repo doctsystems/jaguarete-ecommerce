@@ -2,57 +2,51 @@
 {% load static %}
 {% block title %}Jaguarete Kaa - Update {{producto}}{% endblock %}
 {% block content %}
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{% url 'store:home'%}">Home</a></li>
-          <li class="breadcrumb-item"><a href="{% url 'producto:lista'%}">Productos</a></li>
-          <li class="breadcrumb-item active" aria-current="page">{{producto}}</li>
-        </ol>
-      </nav>
-    </div>
-  </div>
-</div>
-<div class="container mb-5">
-  <form action="" enctype="multipart/form-data" method="post">
-    {% csrf_token %}
-    <div class="row p-3 ">
-      <div class="col-12 col-md-6">
-        <div class="p-3  rounded border ">
-          <div class="form-group row mb-2">
-            <label class="col-lg-3 col-form-label mb-2 mb-lg-0">
-              Categoria</label>
-            <div class="col-lg-9">{{form.categoria}}</div>
-          </div>
-          <div class="form-group row mb-2">
-            <label class="col-lg-3 col-form-label mb-2 mb-lg-0">
-              Nombre</label>
-            <div class="col-lg-9">{{form.nombre}}</div>
-          </div>
-          <div class="form-group row mb-2">
-            <label class="col-lg-3 col-form-label mb-2 mb-lg-0">
-              Imagen</label>
-            <div class="col-lg-9">{{form.imagen}}</div>
-          </div>
-          <div class="form-group row mb-2">
-            <label class="col-lg-3 col-form-label mb-2 mb-lg-0">
-              Precio</label>
-            <div class="col-lg-9">{{form.precio}}</div>
-          </div>
-          <div class="form-group row">
-            <label class="col-lg-3 col-form-label mb-2 mb-lg-0">
-              Descripcion</label>
-            <div class="col-lg-9">{{form.descripcion}}</div>
-          </div>
+<main class="main-content">
+  {% include 'includes/breadcrumb.html' with title='Actualizar Producto' subtitle='Update'%}
+  <div class="login-register-area section-space-y-axis-100">
+    <div class="container">
+      <div class="row d-flex justify-content-center">
+        <div class="col-lg-6">
+          <form action="" enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            <div class="login-form">
+              <h4 class="login-title text-center">Datos del producto</h4>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label>Categoria</label>
+                  {{form.categoria}}
+                  <span class="text-danger">{{form.categoria.errors}}</span>
+                </div>
+                <div class="col-lg-12 mt-3">
+                  <label>Nombre del producto</label>
+                  {{form.nombre}}
+                  <span class="text-danger">{{form.nombre.errors}}</span>
+                </div>
+                <div class="col-lg-6">
+                  <label>Imagen</label>
+                  {{form.imagen}}
+                  <span class="text-danger">{{form.imagen.errors}}</span>
+                </div>
+                <div class="col-lg-6">
+                  <label>Precio</label>
+                  {{form.precio}}
+                  <span class="text-danger">{{form.precio.errors}}</span>
+                </div>
+                <div class="col-lg-12">
+                  <label>Descripción</label>
+                  {{form.descripcion}}
+                </div>
+                <div class="col-lg-12 pt-5">
+                  <button type="submit" class="btn btn-custom-size lg-size btn-pronia-primary">Actualizar</button>
+                  <a class="btn btn-custom-size lg-size btn-pronia-secondary" type="button" href="{{ request.META.HTTP_REFERER }}">Cancelar</a>
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
-    <div class="col-auto">
-      <a class="btn btn-secondary" type="button" href="{{ request.META.HTTP_REFERER }}">Cancelar</a>
-      <input type="submit" class="btn btn-primary" value="Actualizar Producto">
-    </div>
-  </form>
-</div>
+  </div>
+</main>
 {% endblock %}

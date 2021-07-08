@@ -115,3 +115,6 @@ CART_ITEM_MAX_CANTIDAD = 10
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
 
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+

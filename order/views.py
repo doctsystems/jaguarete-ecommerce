@@ -14,10 +14,10 @@ class OrderCreateView(CreateView):
   def form_valid(self, form):
     cart = Cart(self.request)
     if cart:
-      print('entro....')
-      order = form.save()
-      print('Orden guardada...')
-      print(order)
+      order = form.save(commit=False)
+      order.user = self.request.user
+      order.is_pagado = True
+      order.save()
       for item in cart:
         Item.objects.create(
           orden=order,

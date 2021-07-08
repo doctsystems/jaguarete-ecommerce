@@ -2,7 +2,7 @@ from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.models import AnonymousUser
 from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from cart.forms import CartAddProductoForm
@@ -13,6 +13,7 @@ from .forms import ProductoForm
 class ProductoListView(ListView):
   categoria = None
   paginate_by = 6
+  extra_context = {"form": CartAddProductoForm()}
 
   def get_queryset(self):
     queryset = Producto.objects.filter(is_disponible=True)
@@ -36,11 +37,9 @@ class ProductoListView(ListView):
     return context
 
 
-class ProductoDetailView(PermissionRequiredMixin, DetailView):
+class ProductoDetailView(DetailView):
   queryset = Producto.objects.filter(is_disponible=True)
   extra_context = {"form": CartAddProductoForm()}
-  permission_required = 'producto.view_producto'
-  login_url = 'login'
 
   def handle_no_permission(self):
     if not self.request.user == AnonymousUser():

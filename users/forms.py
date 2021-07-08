@@ -12,9 +12,9 @@ class UserCreationForm(ModelForm):
   first_name = forms.CharField(widget=forms.TextInput)
   last_name = forms.CharField(widget=forms.TextInput)
   direction = forms.CharField(widget=forms.TextInput)
-  country = forms.CharField(widget=forms.TextInput)
-  telephone = forms.CharField(widget=forms.TextInput)
-  avatar = forms.ImageField(widget=forms.FileInput)
+  country = forms.CharField(widget=forms.TextInput, required=False)
+  telephone = forms.CharField(widget=forms.TextInput, required=False)
+  avatar = forms.ImageField(widget=forms.FileInput, required=False)
 
   class Meta:
     model = User

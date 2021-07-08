@@ -3393,6 +3393,7 @@ blockquote p {
   border-radius: 1.5rem;
   padding: 1.75rem;
   min-height: 327px;
+  max-height: 548px;
 }
 .product-item:hover {
   border: 2px solid #00c0b5;
@@ -5322,6 +5323,7 @@ blockquote p {
 /*----------------------------------------*/
 .breadcrumb-height {
   height: 200px;
+  background-color: #eeeeee;
 }
 
 .breadcrumb-heading {

@@ -24,14 +24,16 @@
                             </a>
                           </li>
                           <li>
-                            <a href="#" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
+                            <a href="{{p.get_absolute_url}}" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
                               <i class="pe-7s-look"></i>
                             </a>
                           </li>
                           <li>
-                            <a href="#" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
-                              <i class="pe-7s-cart"></i>
-                            </a>
+                            <form method="post" action="{% url 'cart:add' p.id %}">
+                              {% csrf_token %}
+                              <input type="hidden" name="cantidad" class="form-control" required="" id="id_cantidad" value="1">
+                              <a href="#" onClick="javascript:this.parentNode.submit()"><i class="pe-7s-cart" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder"></i></a>
+                            </form>
                           </li>
                         </ul>
                       </div>
@@ -65,9 +67,6 @@
     </div>
   </div>
 </main>
-{% endblock %}
-{% block shipping %}
-<!-- {% include 'includes/shipping.html' %} -->
 {% endblock %}
 {% block new_products %}
 {% include 'includes/last.html' %}

@@ -43,6 +43,11 @@
                   <i class="pe-7s-search"></i>
                 </a>
               </li>
+              {% if user.is_authenticated %}
+              <li class="d-none d-lg-block">
+                Hi, {{request.user.username}}
+              </li>
+              {% endif %}
               <li class="dropdown d-none d-lg-block">
                 <button class="btn btn-link dropdown-toggle ht-btn p-0" type="button" id="settingButton" data-bs-toggle="dropdown" aria-label="setting" aria-expanded="false">
                   <i class="pe-7s-users"></i>
@@ -72,13 +77,13 @@
               </li>
               <li class="minicart-wrap me-3 me-lg-0">
                 <a href="{% url 'cart:detalle'%}" class="minicart-btn">
-                  <i class="pe-7s-shopbag"></i>
+                  <i class="pe-7s-cart"></i>
                   <span class="quantity">{{request.session.cart|length}}</span>
                 </a>
               </li>
               <li class="mobile-menu_wrap d-block d-lg-none">
                 <a href="#mobileMenu" class="mobile-menu_btn toolbar-btn pl-0">
-                  <i class="pe-7s-menu"></i>
+                  <i class="fa fa-bars"></i>
                 </a>
               </li>
             </ul>

@@ -1,0 +1,129 @@
+{% extends 'bases/base.html' %}
+{% load static %}
+{% block title %}Jaguarete Kaa - Dashboard{% endblock %}
+{% block content %}
+<main class="main-content">
+  {% include 'includes/breadcrumb.html' with title='Dashboard' subtitle='Mi cuenta'%}
+  <div class="account-page-area section-space-y-axis-100">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3">
+          <ul class="nav myaccount-tab-trigger" id="account-page-tab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="account-dashboard-tab" data-bs-toggle="tab" href="#account-dashboard" role="tab" aria-controls="account-dashboard" aria-selected="true">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="account-orders-tab" data-bs-toggle="tab" href="#account-orders" role="tab" aria-controls="account-orders" aria-selected="false">Mis Ordenes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="account-address-tab" data-bs-toggle="tab" href="#account-address" role="tab" aria-controls="account-address" aria-selected="false">Direcciones</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="account-details-tab" data-bs-toggle="tab" href="#account-details" role="tab" aria-controls="account-details" aria-selected="false">Detalles</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="account-logout-tab" href="{% url 'logout' %}" role="tab" aria-selected="false">Logout</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-9">
+          <div class="tab-content myaccount-tab-content" id="account-page-tab-content">
+            <div class="tab-pane fade show active" id="account-dashboard" role="tabpanel" aria-labelledby="account-dashboard-tab">
+              <div class="myaccount-dashboard">
+                <p>Hi! <b>{{user}}</b></p>
+                <p>Desde el panel de su cuenta, puede ver sus pedidos recientes, administrar sus direcciones de envío y facturación y editar su contraseña y los detalles de su cuenta.</p>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="account-orders" role="tabpanel" aria-labelledby="account-orders-tab">
+              <div class="myaccount-orders">
+                <h4 class="small-title">Mis Ordenes</h4>
+                <div class="table-responsive">
+                  <table class="table table-bordered table-hover">
+                    <tbody>
+                      <tr>
+                        <th>Orden</th>
+                        <th>Fecha</th>
+                        <th>Descripcion</th>
+                        <th>Total</th>
+                      </tr>
+                      {% for order in ordenes %}
+                      <tr>
+                        <td><a class="account-order-id" href="#">{{order}}</a></td>
+                        <td>{{order.created}}</td>
+                        <td>{{order.get_description}}</td>
+                        <td>${{order.get_precio_total}}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="account-address" role="tabpanel" aria-labelledby="account-address-tab">
+              <div class="myaccount-address">
+                <p>Las siguientes direcciones se utilizarán en la página de pago de forma predeterminada.</p>
+                <div class="row">
+                  <div class="col">
+                    <h4 class="small-title">DIR. DE FACTURACION</h4>
+                    <address>
+                      {{user.direction|title}}
+                    </address>
+                  </div>
+                  <div class="col">
+                    <h4 class="small-title">DIR. DE ENVIO</h4>
+                    <address>
+                      <b>{{user.country|title}}</b>, {{user.direction|title}}
+                    </address>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="account-details" role="tabpanel" aria-labelledby="account-details-tab">
+              <div class="myaccount-details">
+                <form class="myaccount-form">
+                  {% csrf_token %}
+                  <div class="myaccount-form-inner">
+                    <div class="single-input single-input-half">
+                      <label>Nombres*</label>
+                      <input type="text" value="{{user.first_name}}">
+                    </div>
+                    <div class="single-input single-input-half">
+                      <label>Apellidos*</label>
+                      <input type="text" value="{{user.last_name}}">
+                    </div>
+                    <div class="single-input">
+                      <label>Direccion*</label>
+                      <input type="text" value="{{user.direction}}">
+                    </div>
+                    <div class="single-input single-input-half">
+                      <label>País*</label>
+                      <input type="text" value="{{user.country}}">
+                    </div>
+                    <div class="single-input single-input-half">
+                      <label>Teléfono*</label>
+                      <input type="text" value="{{user.telephone}}">
+                    </div>
+                    <div class="single-input single-input-half">
+                      <label>Email*</label>
+                      <input type="text" value="{{user.email}}" disabled>
+                    </div>
+                    <div class="single-input single-input-half">
+                      <label>Username*</label>
+                      <input type="text" value="{{user.username}}" disabled>
+                    </div>
+                    <div class="single-input">
+                      <!-- <button class="btn btn-custom-size lg-size btn-pronia-primary" type="submit">
+                        <span>GUARDAR CAMBIOS</span>
+                      </button> -->
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock content %}

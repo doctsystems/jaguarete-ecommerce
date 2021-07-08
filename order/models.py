@@ -1,11 +1,14 @@
 from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from model_utils.models import TimeStampedModel
 from producto.models import Producto
 
+User = get_user_model()
 
 class Order(TimeStampedModel):
+  user=models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
   nombre = models.CharField("Nombre completo", max_length=250)
   email = models.EmailField()
   direccion = models.CharField("Direccion", max_length=250)

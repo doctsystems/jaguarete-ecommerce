@@ -4,24 +4,8 @@
 {% block title %}Jaguarete Kaa - Carrito{% endblock %}
 {% block content %}
 <main class="main-content">
-  <div class="breadcrumb-area breadcrumb-height" data-bg-image="assets/images/breadcrumb/bg/1-1-1919x388.jpg">
-    <div class="container h-100">
-      <div class="row h-100">
-        <div class="col-lg-12">
-          <div class="breadcrumb-item">
-            <h2 class="breadcrumb-heading">Carrito de compra</h2>
-            <ul>
-              <li>
-                <a href="{% url 'store:home' %}">Home</a>
-              </li>
-              <li>Carrito</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   {% if cart %}
+  {% include 'includes/breadcrumb.html' with title='Carrito de compra' subtitle='Carrito' %}
   <div class="cart-area section-space-y-axis-100">
     <div class="container">
       <div class="row">
@@ -103,7 +87,7 @@
                   <li>Descuento <span>$0.0</span></li>
                   <li>Total <span>${{cart.get_precio_total}}</span></li>
                 </ul>
-                <a href="{% url 'order:create' %}" >FINALIZAR COMPRA</a>
+                <a href="{% url 'order:create' %}">FINALIZAR COMPRA</a>
               </div>
             </div>
           </div>

@@ -11,13 +11,18 @@
             <div class="searchbox d-none d-lg-block">
               <form method='GET' action='/buscar/'>
                 <input id="f" name="f" class="input-field" type="text" placeholder="Buscar" autocomplete="off">
-                <button class="searchbox-btn" type="submit">
+                <button id="buscar" class="searchbox-btn" type="submit">
                   <i class="fa fa-search"></i>
                 </button>
               </form>
             </div>
             <div class="header-right">
               <ul>
+                {% if user.is_authenticated %}
+                <li class="d-none d-lg-block">
+                  Hi, {{request.user.username}}
+                </li>
+                {% endif %}
                 <li class="dropdown d-none d-lg-block">
                   <button class="btn btn-link dropdown-toggle ht-btn p-0" type="button" id="settingButton" data-bs-toggle="dropdown" aria-label="setting" aria-expanded="false">
                     <i class="pe-7s-users"></i>
@@ -25,7 +30,7 @@
                   <ul class="dropdown-menu" aria-labelledby="settingButton">
                     {% if user.is_authenticated %}
                     <li>
-                      <a class="dropdown-item" href="#">Mi cuenta</a>
+                      <a class="dropdown-item" href="{% url 'users:dashboard' %}">Mi cuenta</a>
                     </li>
                     {% if perms.producto.add_producto %}
                     <li>
@@ -99,6 +104,6 @@
   {% include 'includes/header-sticky.html' %}
   {% include 'includes/header-mobile.html' %}
   {% include 'includes/header-modal.html' %}
-  {% include 'includes/header-cart.html' %}
+  <!-- {% include 'includes/header-cart.html' %} -->
   <div class="global-overlay"></div>
 </header>
