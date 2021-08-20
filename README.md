@@ -148,7 +148,7 @@ Este proyecto está desarrollado bajo la Licencia (MIT) - mira el archivo [LICEN
 ## Expresiones de Gratitud 🎁
 
 * Comenta a otros sobre este proyecto 📢
-* Invitame una cerveza 🍺 o un café ☕.
+* [Invitame](https://paypal.me/diegoosvaldo85?locale.x=es_XC) una cerveza 🍺 o un café ☕.
 * Da las gracias públicamente 🤓.
 * etc.
 
