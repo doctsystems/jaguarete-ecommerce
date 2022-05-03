@@ -14,7 +14,7 @@
             <ul class="dropdown-menu" aria-labelledby="settingButton">
               {% if user.is_authenticated %}
               <li>
-                <a class="dropdown-item" href="#">Mi cuenta</a>
+                <a class="dropdown-item" href="{% url 'users:dashboard' %}">Mi cuenta</a>
               </li>
               {% if perms.producto.add_producto %}
               <li>
