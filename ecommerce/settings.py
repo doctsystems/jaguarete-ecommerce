@@ -8,7 +8,8 @@ SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=[], cast=Csv())
+# ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=[], cast=Csv())
+ALLOWED_HOSTS=['127.0.0.1', 'localhost', '104.248.121.197', 'jaguarete.diegoosvaldo.xyz']
 
 AUTH_USER_MODEL = "users.User"
 
