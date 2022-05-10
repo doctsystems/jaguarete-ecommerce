@@ -2976,7 +2976,7 @@ blockquote p {
 }
 
 .modal-bg-dark .btn-close {
-  background-image: url("../images/offcanvas/close-white.svg");
+  background-image: url("../images/close-white.svg");
 }
 
 .modal-header {
